@@ -4,22 +4,32 @@ using UnityEngine.InputSystem;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private InputActionProperty triggerAction;
+    [SerializeField] private GameObject testUI;
+
     private bool isViewfinderActive = false;
+    private bool wasPressed = false;
 
     private void Update()
     {
-        if (triggerAction.action.WasPressedThisFrame())
-        {
-            Debug.Log("Camera on");
-            isViewfinderActive = true;
-            CameraManager.Instance.EnterViewMode();
-        }
+        bool isPressed = triggerAction.action.IsPressed();
 
-        if (triggerAction.action.WasReleasedThisFrame())
+        if (isPressed && !wasPressed)
         {
-            Debug.Log("Camera off");
-            isViewfinderActive = false;
-            CameraManager.Instance.ExitViewMode();
+            isViewfinderActive = !isViewfinderActive;
+
+            if(isViewfinderActive)
+            {
+                Debug.Log("Camera on");
+                CameraManager.Instance.EnterViewMode();
+                if(testUI != null) testUI.SetActive(true);
+            }
+            else
+            {
+                Debug.Log("Camera off");
+                CameraManager.Instance.ExitViewMode();
+                if (testUI != null) testUI.SetActive(false);
+            }
         }
+        wasPressed = isPressed;
     }
 }
