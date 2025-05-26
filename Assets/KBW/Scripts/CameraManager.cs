@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.SceneView;
 
 public class CameraManager : MonoBehaviour
 {
@@ -13,16 +14,45 @@ public class CameraManager : MonoBehaviour
         if (Instance == null) Instance = this;
     }
 
-    public void EnterViewMode()
+    public void EnterCameraMode()
     {
-        foreach (var obj in hiddenObjects) 
-            obj.SetActive(true);
+        foreach (var obj in hiddenObjects)
+        {
+            SetMode(obj, true);
+            /*Transform[] children = obj.GetComponentsInChildren<Transform>();
+            foreach (Transform child in obj.transform)
+            {
+                if (child.CompareTag("NormalMode"))
+                    child.gameObject.SetActive(false);
+                else if (child.CompareTag("CameraMode"))
+                    child.gameObject.SetActive(true);
+            }*/
+        }            
     }
 
-    public void ExitViewMode()
+    public void ExitCameraMode()
     {
-        foreach (var obj in hiddenObjects) 
-            obj.SetActive(false);
+        foreach (var obj in hiddenObjects)
+        {
+            SetMode(obj, false);
+            /*Transform[] children = obj.GetComponentsInChildren<Transform>();
+            foreach (Transform child in obj.transform)
+            {
+                if (child.CompareTag("NormalMode"))
+                    child.gameObject.SetActive(true);
+                else if (child.CompareTag("CameraMode"))
+                    child.gameObject.SetActive(false);
+            }*/
+        }
+    }
+
+    private void SetMode(GameObject obj, bool isCameraMode)
+    {
+        Transform on = obj.transform.Find("On");
+        Transform off = obj.transform.Find("Off");
+
+        if (on != null) on.gameObject.SetActive(isCameraMode);
+        if (off != null) off.gameObject.SetActive(!isCameraMode);
     }
 
     public void RegisterHiddenObject(GameObject obj)

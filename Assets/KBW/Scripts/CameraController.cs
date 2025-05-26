@@ -19,14 +19,14 @@ public class CameraController : MonoBehaviour
 
             if(isViewfinderActive)
             {
-                Debug.Log("Camera on");
-                CameraManager.Instance.EnterViewMode();
+                Debug.Log("Camera On");
+                CameraManager.Instance.EnterCameraMode();
                 if(testUI != null) testUI.SetActive(true);
             }
             else
             {
-                Debug.Log("Camera off");
-                CameraManager.Instance.ExitViewMode();
+                Debug.Log("Camera Off");
+                CameraManager.Instance.ExitCameraMode();
                 if (testUI != null) testUI.SetActive(false);
             }
         }
