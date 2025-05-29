@@ -6,6 +6,8 @@ public class CameraManager : MonoBehaviour
 {
     public static CameraManager Instance;
 
+    public bool isCameraMode = false; 
+
     [SerializeField] 
     private List<GameObject> hiddenObjects;
 
@@ -16,6 +18,8 @@ public class CameraManager : MonoBehaviour
 
     public void EnterCameraMode()
     {
+        isCameraMode = true;
+        Debug.Log("isCameraMode: " + isCameraMode);
         foreach (var obj in hiddenObjects)
         {
             SetMode(obj, true);
@@ -32,6 +36,8 @@ public class CameraManager : MonoBehaviour
 
     public void ExitCameraMode()
     {
+        isCameraMode = false;
+        Debug.Log("isCameraMode: " + isCameraMode);
         foreach (var obj in hiddenObjects)
         {
             SetMode(obj, false);

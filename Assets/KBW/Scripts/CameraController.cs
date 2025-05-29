@@ -1,12 +1,19 @@
+using System.Collections;
+using NUnit.Framework.Internal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private InputActionProperty triggerAction;
-    [SerializeField] private GameObject testUI;
+    [SerializeField] private GameObject myTunnelingVignette;
+    [SerializeField] private GameObject tunnelingVignette;
+    [SerializeField] private GameObject layer1;
+    [SerializeField] private GameObject layer2;
+    [SerializeField] private GameObject layer3;
+    [SerializeField] private GameObject layer4;
 
-    private bool isViewfinderActive = false;
+    private bool isCameraActive = false;
     private bool wasPressed = false;
 
     private void Update()
@@ -15,21 +22,44 @@ public class CameraController : MonoBehaviour
 
         if (isPressed && !wasPressed)
         {
-            isViewfinderActive = !isViewfinderActive;
+            isCameraActive = !isCameraActive;
 
-            if(isViewfinderActive)
+            if(isCameraActive)
             {
                 Debug.Log("Camera On");
                 CameraManager.Instance.EnterCameraMode();
-                if(testUI != null) testUI.SetActive(true);
+                if (tunnelingVignette != null) tunnelingVignette.SetActive(false);
+                if (myTunnelingVignette != null) myTunnelingVignette.SetActive(true);
+                StartCoroutine(DelayHUD(layer1));
+                StartCoroutine(DelayHUD(layer2));
+                StartCoroutine(DelayHUD(layer3));
+                StartCoroutine(DelayHUD(layer4));
             }
             else
             {
                 Debug.Log("Camera Off");
                 CameraManager.Instance.ExitCameraMode();
-                if (testUI != null) testUI.SetActive(false);
+                if (tunnelingVignette != null) tunnelingVignette.SetActive(true);
+                if (myTunnelingVignette != null) myTunnelingVignette.SetActive(false);
+                StartCoroutine(DelayHUD(layer4));
+                StartCoroutine(DelayHUD(layer3));
+                StartCoroutine(DelayHUD(layer2));
+                StartCoroutine(DelayHUD(layer1));
             }
         }
         wasPressed = isPressed;
+    }
+
+    IEnumerator DelayHUD(GameObject layer)
+    {
+        yield return null;
+        if (layer.activeSelf)
+        {
+            layer.SetActive(false);
+        }
+        else
+        {
+            layer.SetActive(true);
+        }            
     }
 }
