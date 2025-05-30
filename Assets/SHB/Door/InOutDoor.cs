@@ -19,5 +19,6 @@ public class InOutDoor : MonoBehaviour
     {
         inDoor.SetActive(isIn);   // 밖에 있으면outDoor 보여줌
         outDoor.SetActive(!isIn);   // 안에 있으면 inDoor 보여줌
+        
     }
 }

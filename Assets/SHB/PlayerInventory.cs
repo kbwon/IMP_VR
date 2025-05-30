@@ -8,7 +8,7 @@ public class PlayerInventory : MonoBehaviour
 
     void Start()
     {
-        keyNumberList.Add(5);
+        keyNumberList.Add(0);
     }
 
 }

@@ -34,9 +34,9 @@ public class Door : MonoBehaviour
     {
         foreach (int keyNumber in playerInventory.keyNumberList)
         {
+            Debug.Log("플레이어가 가진 키: " + keyNumber);
             if (doorNumber == keyNumber)
             {
-                Debug.Log("My key: " + keyNumber + " // Door number: " + doorNumber);
                 doorNumber = 0; // 열쇠가 맞으니 더 이상 매회 열쇠 체크할 필요가 없음. 문 번호 0으로 바꿈.
                 return true;
             }
