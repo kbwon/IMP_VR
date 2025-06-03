@@ -27,7 +27,7 @@ public class DishPieceGrabReporter : MonoBehaviour
     {
         if (parentScript != null)
         {
-            parentScript.getBreakingDish(gameObject);  // 자기 자신 넘겨줌
+            parentScript.getBreakingDish(this.gameObject);  // 자기 자신 넘겨줌
         }
     }
 }
