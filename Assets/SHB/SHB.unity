@@ -7830,7 +7830,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 840006015157071367, guid: 7e2f1b5c87f078e45941d35130d7ef7e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.6960745
+      value: -6.7722
       objectReference: {fileID: 0}
     - target: {fileID: 840006015157071367, guid: 7e2f1b5c87f078e45941d35130d7ef7e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7859,6 +7859,14 @@ PrefabInstance:
     - target: {fileID: 840006015157071367, guid: 7e2f1b5c87f078e45941d35130d7ef7e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3079752568776091984, guid: 7e2f1b5c87f078e45941d35130d7ef7e, type: 3}
+      propertyPath: doorNumber
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6260073550899088173, guid: 7e2f1b5c87f078e45941d35130d7ef7e, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8619450977960720061, guid: 7e2f1b5c87f078e45941d35130d7ef7e, type: 3}
       propertyPath: m_Name

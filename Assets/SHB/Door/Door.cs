@@ -6,6 +6,7 @@ public class Door : MonoBehaviour
     public String DoNotEditThisClass = "이 클래스 건들면 안 됨!";
     public Transform teleportLocation;
     public InOutDoor inOutDoor;
+    public DoorSoundManager doorSoundManager;
     private GameObject player;
     private int doorNumber;  //열쇠가 필요없는 문은 0번이다.
     private PlayerInventory playerInventory;
@@ -22,12 +23,17 @@ public class Door : MonoBehaviour
     {
         if (doorNumber != 0)
         {
-            if (isDoorCollectWithMyKey() == false) return;
+            if (isDoorCollectWithMyKey() == false)
+            {
+                doorSoundManager.cannotOpenSoundPlay();
+                return;
+            }
         }
 
         player.transform.position = teleportLocation.position;
         inOutDoor.isIn = !inOutDoor.isIn;  // 실내/실외 상태 업데이트
         inOutDoor.doorUpdate();
+        doorSoundManager.canOpenSoundPlay();
     }
 
     public bool isDoorCollectWithMyKey()  // 열쇠랑 문 번호가 맞는지 체크를 함.
