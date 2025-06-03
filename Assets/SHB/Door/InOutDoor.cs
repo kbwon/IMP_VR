@@ -12,7 +12,7 @@ public class InOutDoor : MonoBehaviour
     public GameObject outDoor;
     public bool isIn = false;  //시작할 땐 밖에 있음.
 
-    public String onlyUseBelow = "아래 항목들만 건드셈";
+    [Header("아래 항목들만 손댈 것")]
     public int doorNumber = 0;
 
     

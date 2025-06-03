@@ -12,6 +12,8 @@ public class BreakableWall : MonoBehaviour
     public AudioSource audiosource;
     public AudioClip audioclip;
     public TextMeshPro guideLetter;
+    [Header("필요 시 아래 항목만 체크할 것")]
+    public bool canRip = false;
 
     private GameObject player;
     private PlayerInventory playerInventory;
@@ -28,26 +30,16 @@ public class BreakableWall : MonoBehaviour
 
         wallCameraOn.GetComponent<XRGrabInteractable>().enabled = false;
         wallCameraOff.GetComponent<XRGrabInteractable>().enabled = false;
+
+        if (canRip == false)
+        {
+            gameObject.GetComponent<IfCameraUsing>().enabled = false;
+        }
     }
 
     void Update()
     {
-        /*
-        if (cameraOn)
-        {
-            wall = wallCameraOn;
-            wallcameraOn.SetActive(true);
-            wallCameraOff.SetActive(false);
-        }
-
-        else
-        {
-            wall = wallCameraOff;
-            wallCameraOff.SetActive(true);
-            wallCameraOn.SetActive(false);
-        }
-        */
-
+        if (canRip == false) return;
         if (hasDishFragment) return;
 
         if (InventoryHasItem("DishFragment"))
@@ -55,12 +47,13 @@ public class BreakableWall : MonoBehaviour
             hasDishFragment = true;
             guideLetter.text = "Press Grab to use Dish Fragment to remove wallpaper";
             wallCameraOn.GetComponent<XRGrabInteractable>().enabled = true;
-        wallCameraOff.GetComponent<XRGrabInteractable>().enabled = true;
+            wallCameraOff.GetComponent<XRGrabInteractable>().enabled = true;
         }
     }
 
     public void removeWall()
     {
+        if (canRip == false) return;
         if (!hasDishFragment) return;
 
         audiosource.PlayOneShot(audioclip);

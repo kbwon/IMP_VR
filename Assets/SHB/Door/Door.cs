@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public String DoNotEditThisClass = "이 클래스 건들면 안 됨!";
+    [Header("아무것도 건들지 말 것")]
     public Transform teleportLocation;
     public InOutDoor inOutDoor;
     public DoorSoundManager doorSoundManager;

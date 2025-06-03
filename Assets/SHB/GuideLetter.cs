@@ -3,6 +3,7 @@ using UnityEngine;
 public class GuideLetter : MonoBehaviour
 {
     public GameObject guideLetter;
+    [Header("필요 시 다음 항목 체크할 것")]
     public bool isFaceToCamera = false;
 
     void Start()

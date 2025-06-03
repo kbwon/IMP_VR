@@ -4,25 +4,25 @@ public class IfCameraUsing : MonoBehaviour
 {
     public GameObject cameraOffObject;
     public GameObject cameraOnObject;
-    void Start()
-    {
-        
-    }
+    public bool isCameraOn = false;
 
-    // Update is called once per frame
     void Update()  // 병욱이 거 구현된 거 보고 최적화 할 듯
     {
-        /*
-        if (카메라 사용 중){
-            cameraOnObject.SetActive(false);
-            cameraOnObject.setActive(true);
-        }
+        if (isCameraOn == false) cameraOff();
+        else cameraOn();
+    }
 
-        else{
-            cameraOnObject.SetActive(true);
-            cameraOnObject.setActive(false);
-            }
+    public void cameraOn()
+    {
+        cameraOffObject.SetActive(false);
+        cameraOnObject.SetActive(true);
+        isCameraOn = true;
+    }
 
-        */
+    public void cameraOff()
+    {
+        cameraOffObject.SetActive(true);
+        cameraOnObject.SetActive(false);
+        isCameraOn = false;
     }
 }
