@@ -14,7 +14,7 @@ public class GetBreakingDish : MonoBehaviour
 
     public void getBreakingDish(GameObject piece)
     {
-        playerInventory.items.Add("BreakingDish");
+        playerInventory.items.Add("DishFragment");
         Debug.Log("Items: " + string.Join(", ", playerInventory.items));
         Debug.Log("Key Numbers: " + string.Join(", ", playerInventory.keyNumberList));
 

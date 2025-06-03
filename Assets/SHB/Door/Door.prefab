@@ -154,7 +154,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -878,7 +878,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8828942542679278387
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1050,6 +1050,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guideLetter: {fileID: 8748377573128582077}
+  isFaceToCamera: 0
 --- !u!1 &9009076087037963734
 GameObject:
   m_ObjectHideFlags: 0
@@ -1077,7 +1078,7 @@ Transform:
   m_GameObject: {fileID: 9009076087037963734}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.141, y: 0, z: 0}
+  m_LocalPosition: {x: -0.65, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1140,7 +1141,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1289,6 +1290,10 @@ PrefabInstance:
     - target: {fileID: 8169423436601191812, guid: 4b30f6c31b57ecd44951f6ab587900c6, type: 3}
       propertyPath: m_Name
       value: GuideLetter
+      objectReference: {fileID: 0}
+    - target: {fileID: 8169423436601191812, guid: 4b30f6c31b57ecd44951f6ab587900c6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

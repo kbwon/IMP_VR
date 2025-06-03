@@ -5,19 +5,27 @@ public class GuideLetter : MonoBehaviour
     public GameObject guideLetter;
     public bool isFaceToCamera = false;
 
+    void Start()
+    {
+        //guideLetter.SetActive(false);
+        guideLetterOff();
+    }
+
     public void guideLetterOn()
     {
-        guideLetter.SetActive(true);
+        //guideLetter.SetActive(true);
+        guideLetter.GetComponent<Renderer>().enabled = true;
     }
 
     public void guideLetterOff()
     {
-        guideLetter.SetActive(false);
+        guideLetter.GetComponent<Renderer>().enabled = false;
+        //guideLetter.SetActive(false);
     }
 
     void Update()
 {
-    if (isFaceToCamera && guideLetter.activeSelf)
+    if (isFaceToCamera)
     {
         Transform cam = Camera.main.transform;
 
