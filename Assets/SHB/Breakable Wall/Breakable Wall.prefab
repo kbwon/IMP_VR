@@ -198,7 +198,6 @@ MonoBehaviour:
   inDoor: {fileID: 6315141130550617996}
   outDoor: {fileID: 1533959984685743399}
   isIn: 0
-  onlyUseBelow: "\uC544\uB798 \uD56D\uBAA9\uB4E4\uB9CC \uAC74\uB4DC\uC148"
   doorNumber: 5
 --- !u!1 &1189838577717080919
 GameObject:
@@ -545,7 +544,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8032b3366d77f04295d1aa103859b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DoNotEditThisClass: "\uC774 \uD074\uB798\uC2A4 \uAC74\uB4E4\uBA74 \uC548 \uB428!"
   teleportLocation: {fileID: 5508998573881350496}
   inOutDoor: {fileID: 5891074836505588964}
   doorSoundManager: {fileID: 2266956845557048746}
@@ -1425,6 +1423,92 @@ Transform:
   - {fileID: 7377700802774925759}
   m_Father: {fileID: 2644963905832238336}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4775076268741377280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8570911395056748393}
+  - component: {fileID: 7670021897449281689}
+  - component: {fileID: 7017366197776403998}
+  m_Layer: 0
+  m_Name: Bowl_fracturepart1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8570911395056748393
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4775076268741377280}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.4117929, y: 0.014227095, z: 0.23651662, w: 0.8799342}
+  m_LocalPosition: {x: -0.082613945, y: 0.031958938, z: 0.0423}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2124671086293062986}
+  m_LocalEulerAnglesHint: {x: -47.006, y: -14.415, z: 36.385}
+--- !u!33 &7670021897449281689
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4775076268741377280}
+  m_Mesh: {fileID: -6772205749463175690, guid: 3d65a53a1d24e914b8aa1fd81db222bf, type: 3}
+--- !u!23 &7017366197776403998
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4775076268741377280}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 3187221798020242887, guid: 3d65a53a1d24e914b8aa1fd81db222bf, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5000084216143946931
 GameObject:
   m_ObjectHideFlags: 0
@@ -1792,7 +1876,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8032b3366d77f04295d1aa103859b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DoNotEditThisClass: "\uC774 \uD074\uB798\uC2A4 \uAC74\uB4E4\uBA74 \uC548 \uB428!"
   teleportLocation: {fileID: 5201300543418355947}
   inOutDoor: {fileID: 5891074836505588964}
   doorSoundManager: {fileID: 2266956845557048746}
@@ -2341,6 +2424,7 @@ GameObject:
   - component: {fileID: 5724085427188775462}
   - component: {fileID: 2907246551879384529}
   - component: {fileID: 5736209617120475031}
+  - component: {fileID: 4419161826024482871}
   m_Layer: 0
   m_Name: Breakable Wall
   m_TagString: Untagged
@@ -2365,6 +2449,7 @@ Transform:
   - {fileID: 3214991318831259917}
   - {fileID: 695855045338158990}
   - {fileID: 8951361465507536306}
+  - {fileID: 8570911395056748393}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5724085427188775462
@@ -2383,10 +2468,11 @@ MonoBehaviour:
   wallCameraOn: {fileID: 6725240735889582312}
   wallCameraOff: {fileID: 1189838577717080919}
   audiosource: {fileID: 2907246551879384529}
-  audioclip: {fileID: 8300000, guid: 7c719b6623898e5488c8f56286a6d6e3, type: 3}
+  audioclip1: {fileID: 8300000, guid: 7c719b6623898e5488c8f56286a6d6e3, type: 3}
+  audioclip2: {fileID: 8300000, guid: 75a572eb7b30f84499b135d12e16dac8, type: 3}
   guideLetter: {fileID: 9218134307187664079}
-  useOnlyBelow: "\uBC11\uC5D0 \uC788\uB294 \uAC70\uB9CC \uAC74\uB4DC\uC148"
   canRip: 1
+  wallAnimator: {fileID: 0}
 --- !u!82 &2907246551879384529
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2499,6 +2585,28 @@ MonoBehaviour:
   cameraOffObject: {fileID: 1189838577717080919}
   cameraOnObject: {fileID: 6725240735889582312}
   isCameraOn: 0
+--- !u!95 &4419161826024482871
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6782492357141064007}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4bb911b54013f4c4c9cbf1b346f94cca, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7805649797540144170
 GameObject:
   m_ObjectHideFlags: 0
