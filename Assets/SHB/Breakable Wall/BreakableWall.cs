@@ -16,17 +16,12 @@ public class BreakableWall : MonoBehaviour
     public TextMeshPro guideLetter;
     [Header("필요 시 아래 항목만 체크할 것")]
     public bool canRip = false;
-
-    private GameObject player;
-    private PlayerInventory playerInventory;
     private bool hasDishFragment = false;
 
     public Animator wallAnimator; // Animator를 연결할 변수
 
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
-        playerInventory = player.GetComponent<PlayerInventory>();
         door.SetActive(false);
         guideLetter.text = string.Empty;
         wall = wallCameraOff;
@@ -90,7 +85,7 @@ public class BreakableWall : MonoBehaviour
 
     private bool InventoryHasItem(string target)
     {
-        foreach (string item in playerInventory.items)
+        foreach (string item in PlayerInventory.items)
         {
             if (item.Equals(target, StringComparison.Ordinal))
             {

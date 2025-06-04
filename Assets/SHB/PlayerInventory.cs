@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    public List<int> keyNumberList = new();
-    public List<String> items = new();
-
-    void Start()
+    public static List<int> keyNumberList = new();
+    public static List<String> items = new();
+    public static void printAll()
     {
-        keyNumberList.Add(0);
+         Debug.Log("Items: " + string.Join(", ", items));
+        Debug.Log("Key Numbers: " + string.Join(", ", keyNumberList));
     }
 
 }

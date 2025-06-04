@@ -11,7 +11,6 @@ public class Door : MonoBehaviour
     public TextMeshPro guideLetter;
     private GameObject player;
     private int doorNumber;  //열쇠가 필요없는 문은 0번이다.
-    private PlayerInventory playerInventory;
 
     private bool haveKey = false;
 
@@ -19,7 +18,6 @@ public class Door : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        playerInventory = player.GetComponent<PlayerInventory>();
         doorNumber = inOutDoor.doorNumber;
     }
 
@@ -44,7 +42,7 @@ public class Door : MonoBehaviour
 
     public bool isDoorCollectWithMyKey()  // 열쇠랑 문 번호가 맞는지 체크를 함.
     {
-        foreach (int keyNumber in playerInventory.keyNumberList)
+        foreach (int keyNumber in PlayerInventory.keyNumberList)
         {
             Debug.Log("플레이어가 가진 키: " + keyNumber);
             if (doorNumber == keyNumber)
