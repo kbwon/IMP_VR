@@ -262,7 +262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8032b3366d77f04295d1aa103859b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DoNotEditThisClass: "\uC774 \uD074\uB798\uC2A4 \uAC74\uB4E4\uBA74 \uC548 \uB428!"
   teleportLocation: {fileID: 8008532979305800788}
   inOutDoor: {fileID: 3079752568776091984}
   doorSoundManager: {fileID: 5996956899809427498}
@@ -584,7 +583,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8032b3366d77f04295d1aa103859b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DoNotEditThisClass: "\uC774 \uD074\uB798\uC2A4 \uAC74\uB4E4\uBA74 \uC548 \uB428!"
   teleportLocation: {fileID: 6131696217927014648}
   inOutDoor: {fileID: 3079752568776091984}
   doorSoundManager: {fileID: 5996956899809427498}
@@ -858,7 +856,6 @@ MonoBehaviour:
   inDoor: {fileID: 2951916106137097152}
   outDoor: {fileID: 7584891633303451980}
   isIn: 0
-  onlyUseBelow: "\uC544\uB798 \uD56D\uBAA9\uB4E4\uB9CC \uAC74\uB4DC\uC148"
   doorNumber: 5
 --- !u!1 &8748377573128582077
 GameObject:
