@@ -14,13 +14,16 @@ public class InOutDoor : MonoBehaviour
 
     [Header("아래 항목들만 손댈 것")]
     public int doorNumber = 0;
+    public bool isItLocker = false;
 
-    
-
+    void Start()
+    {
+        inDoor.SetActive(false);
+    }
     public void doorUpdate()
     {
         inDoor.SetActive(isIn);   // 밖에 있으면outDoor 보여줌
         outDoor.SetActive(!isIn);   // 안에 있으면 inDoor 보여줌
-        
+
     }
 }
