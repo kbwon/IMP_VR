@@ -1,17 +1,20 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // ½Ì±ÛÅæ ÀÎ½ºÅÏ½º
+    // ì‹±ê¸€í†¤ ì¸ìŠ¤í„´ìŠ¤
     public static GameManager Instance { get; private set; }
 
-    [Header("¾À¿¡ ¹èÄ¡µÈ ¸ó½ºÅÍ ·¹ÆÛ·±½º")]
-    public MonsterAI dollMonster;
-    public MonsterAI bookheadMonster;
+    [Header("ì”¬ì— ë°°ì¹˜ëœ ëª¬ìŠ¤í„° ì˜¤ë¸Œì íŠ¸")]
+    public GameObject dollMonsterObject;
+    public GameObject bookheadMonsterObject;
+
+    private MonsterAI dollMonster;
+    private MonsterAI bookheadMonster;
 
     void Awake()
     {
-        // ½Ì±ÛÅæ ÀÎ½ºÅÏ½º ¼³Á¤
+        // ì‹±ê¸€í†¤ ì¸ìŠ¤í„´ìŠ¤ ì„¤ì •
         if (Instance == null)
         {
             Instance = this;
@@ -26,24 +29,43 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // ¿¹½Ã: °ÔÀÓ ½ÃÀÛÇÏÀÚ¸¶ÀÚ µÑ ´Ù OFF
+        // ëª¬ìŠ¤í„° ì˜¤ë¸Œì íŠ¸ë¥¼ ë¹„í™œì„±í™” (ê²Œì„ ì‹œì‘ ì‹œ)
+        if (dollMonsterObject != null)
+            dollMonsterObject.SetActive(false);
+        if (bookheadMonsterObject != null)
+            bookheadMonsterObject.SetActive(false);
+
+        // ì»´í¬ë„ŒíŠ¸ ì°¸ì¡° ì €ì¥
+        if (dollMonsterObject != null)
+            dollMonster = dollMonsterObject.GetComponent<MonsterAI>();
+        if (bookheadMonsterObject != null)
+            bookheadMonster = bookheadMonsterObject.GetComponent<MonsterAI>();
+
+        // ë‚´ë¶€ ë¡œì§ë„ ë¹„í™œì„±í™” í˜¸ì¶œ
         if (dollMonster != null)
             dollMonster.DisableChaseAndAttack();
-
         if (bookheadMonster != null)
             bookheadMonster.DisableChaseAndAttack();
     }
 
-    // UI ¹öÆ°ÀÌ³ª ÀÌº¥Æ®¿¡¼­ È£ÃâÇÒ ¼ö ÀÖµµ·Ï °ø°³ ¸Ş¼­µå
+    // âœ… ê¸°ì¡´ ë©”ì„œë“œ ì´ë¦„ ìœ ì§€í•˜ë©´ì„œ ëª¬ìŠ¤í„° ì˜¤ë¸Œì íŠ¸ í™œì„±/ë¹„í™œì„± í¬í•¨
     public void ToggleDollBehavior(bool on)
     {
-        if (dollMonster != null)
-            dollMonster.SetChaseAndAttackEnabled(on);
+        if (dollMonsterObject != null)
+        {
+            dollMonsterObject.SetActive(on);
+            if (dollMonster != null)
+                dollMonster.SetChaseAndAttackEnabled(on);
+        }
     }
 
     public void ToggleBookheadBehavior(bool on)
     {
-        if (bookheadMonster != null)
-            bookheadMonster.SetChaseAndAttackEnabled(on);
+        if (bookheadMonsterObject != null)
+        {
+            bookheadMonsterObject.SetActive(on);
+            if (bookheadMonster != null)
+                bookheadMonster.SetChaseAndAttackEnabled(on);
+        }
     }
 }
