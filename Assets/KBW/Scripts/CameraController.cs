@@ -65,7 +65,7 @@ public class CameraController : MonoBehaviour
         // UI 텍스트 갱신
         if (activeTimeText != null)
         {
-            activeTimeText.text = Mathf.Ceil(activeTime).ToString();
+            activeTimeText.text = Mathf.Ceil(activeTime).ToString() + "%";
         }
 
         wasPressed = isPressed;

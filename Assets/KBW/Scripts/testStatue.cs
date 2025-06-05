@@ -10,7 +10,7 @@ public class testStatue : MonoBehaviour
 
         if (!isStared)
         {
-            transform.Rotate(new Vector3(0, 30, 0));
+            transform.Rotate(new Vector3(0, 10, 0));
         }
     }
 }

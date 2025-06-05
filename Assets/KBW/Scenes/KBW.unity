@@ -290,7 +290,7 @@ GameObject:
   - component: {fileID: 37597770}
   - component: {fileID: 37597769}
   - component: {fileID: 37597768}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TestSocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,7 +312,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 2
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -3963,9 +3963,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2297649192779454897, guid: a14a3c0361234a347b57f7ceb75954ec, type: 3}
+      propertyPath: m_InteractionLayers.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5779540955461027715, guid: a14a3c0361234a347b57f7ceb75954ec, type: 3}
       propertyPath: m_Name
       value: MyFlashLight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779540955461027715, guid: a14a3c0361234a347b57f7ceb75954ec, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8136348917168209265, guid: a14a3c0361234a347b57f7ceb75954ec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7485,6 +7493,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Origin (XR Rig)
       objectReference: {fileID: 0}
+    - target: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.123
@@ -7524,6 +7536,14 @@ PrefabInstance:
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1883230248363655243, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_InteractionLayers.m_Bits
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2141651114331267770, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_InteractionLayers.m_Bits
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2975474303614266328, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_RenderPostProcessing
@@ -8488,15 +8508,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 423822977798447409, guid: f162680f28929524b809c12ed1bbac4d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.754
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 423822977798447409, guid: f162680f28929524b809c12ed1bbac4d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.025
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 423822977798447409, guid: f162680f28929524b809c12ed1bbac4d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.04
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 423822977798447409, guid: f162680f28929524b809c12ed1bbac4d, type: 3}
       propertyPath: m_LocalRotation.w
