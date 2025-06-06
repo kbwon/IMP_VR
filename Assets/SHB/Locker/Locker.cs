@@ -1,0 +1,32 @@
+using UnityEngine;
+
+public class Locker : MonoBehaviour
+{
+    // 몇 가지 알아야 하는 것
+    // 1. 플레이어가 쫓기고 있는가?
+    // 2. 플레이어와 몬스터가 같은 방에 있는가?
+    // 3. 어떤 몬스터에게 쫓기고 있는가?
+
+    public bool isPlayerChased = false;
+    public bool isPlayerAndMonsterSameRoom = false;
+
+    public void locker()
+    {
+        if (isPlayerChased == false) Debug.Log("아무 일도 안 일어남");
+
+        else if (isPlayerChased == true)
+        {
+            if (isPlayerAndMonsterSameRoom == true)
+            {
+                Debug.Log("죽는 애니메이션 만들어서 그거 쓸 거임");
+                Debug.Log("생각해보니 그럼 어떤 몬스터한테 쫓기고 있는지도 알아야 하겠네.");
+            }
+
+            else if (isPlayerAndMonsterSameRoom == false)
+            {
+                Debug.Log("몬스터가 방에 들어왔다 나가는 거 소리 애니메이션 만들어서 재생할 거임");
+                Debug.Log("또한 이 경우에는 애니메이션 재생이 끝날 때까지 인터렉트 다 꺼버릴거임. 갑자기 중간에 나가버리면 안 되니까.");
+            }
+        }
+    }
+}

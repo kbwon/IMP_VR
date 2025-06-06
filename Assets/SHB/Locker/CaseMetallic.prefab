@@ -419,15 +419,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door(Locker)
       objectReference: {fileID: 0}
+    - target: {fileID: 7113742384229265079, guid: ffc5caf50754f7f4b809b71e4e39cc88, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7175035170284714159, guid: ffc5caf50754f7f4b809b71e4e39cc88, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620505804825961277, guid: ffc5caf50754f7f4b809b71e4e39cc88, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 7286523257420731112}
+    - target: {fileID: 8620505804825961277, guid: ffc5caf50754f7f4b809b71e4e39cc88, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: locker
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620505804825961277, guid: ffc5caf50754f7f4b809b71e4e39cc88, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Locker, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620505804825961277, guid: ffc5caf50754f7f4b809b71e4e39cc88, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffc5caf50754f7f4b809b71e4e39cc88, type: 3}
+--- !u!114 &7286523257420731112 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5524625573913510488, guid: ffc5caf50754f7f4b809b71e4e39cc88, type: 3}
+  m_PrefabInstance: {fileID: 3005457844150997168}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 485eba3b01ec5d144ba5406b4bf4ea6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7363202071978997677 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5736141964004452125, guid: ffc5caf50754f7f4b809b71e4e39cc88, type: 3}
@@ -444,6 +475,18 @@ PrefabInstance:
     - target: {fileID: 2793466683996768153, guid: ffc5caf50754f7f4b809b71e4e39cc88, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5357256157434343271, guid: ffc5caf50754f7f4b809b71e4e39cc88, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.681
+      objectReference: {fileID: 0}
+    - target: {fileID: 5357256157434343271, guid: ffc5caf50754f7f4b809b71e4e39cc88, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5357256157434343271, guid: ffc5caf50754f7f4b809b71e4e39cc88, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5736141964004452125, guid: ffc5caf50754f7f4b809b71e4e39cc88, type: 3}
       propertyPath: m_LocalPosition.x
@@ -489,6 +532,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door(Locker)
       objectReference: {fileID: 0}
+    - target: {fileID: 7113742384229265079, guid: ffc5caf50754f7f4b809b71e4e39cc88, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7175035170284714159, guid: ffc5caf50754f7f4b809b71e4e39cc88, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -496,6 +543,22 @@ PrefabInstance:
     - target: {fileID: 8342111516658251148, guid: ffc5caf50754f7f4b809b71e4e39cc88, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620505804825961277, guid: ffc5caf50754f7f4b809b71e4e39cc88, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2554274403329851827}
+    - target: {fileID: 8620505804825961277, guid: ffc5caf50754f7f4b809b71e4e39cc88, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: locker
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620505804825961277, guid: ffc5caf50754f7f4b809b71e4e39cc88, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Locker, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620505804825961277, guid: ffc5caf50754f7f4b809b71e4e39cc88, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -507,3 +570,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5736141964004452125, guid: ffc5caf50754f7f4b809b71e4e39cc88, type: 3}
   m_PrefabInstance: {fileID: 8059739885470090219}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2554274403329851827 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5524625573913510488, guid: ffc5caf50754f7f4b809b71e4e39cc88, type: 3}
+  m_PrefabInstance: {fileID: 8059739885470090219}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 485eba3b01ec5d144ba5406b4bf4ea6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

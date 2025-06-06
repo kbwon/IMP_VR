@@ -14,9 +14,10 @@ public class Door : MonoBehaviour
     private int doorNumber;  //열쇠가 필요없는 문은 0번이다.
 
     private bool haveKey = false;
-    public bool isItLocker;
+
 
     [Header("락커의 경우, 얘만 건들 것")]
+    public bool isItLocker;
     public bool isInsideLocker;
 
 
