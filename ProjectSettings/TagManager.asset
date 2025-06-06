@@ -7,7 +7,6 @@ TagManager:
   - Anchor
   - Monster
   - Statue
-  - FinalPizza
   layers:
   - Default
   - TransparentFX
