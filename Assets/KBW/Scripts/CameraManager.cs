@@ -1,22 +1,23 @@
 using System.Collections.Generic;
+using NUnit.Framework.Interfaces;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Rendering;
 using static UnityEditor.SceneView;
 
 public class CameraManager : MonoBehaviour
 {
+    // CameraManager.instance.~ 로 접근 가능
     public static CameraManager Instance;
 
+    // 아이템에 카메라 현재 상태 전달하는 변수
     public bool isCameraMode = false; 
 
+    // 아이템 개수 많지 않으면 이쪽에 아이템 등록
     [SerializeField] 
     private List<GameObject> hiddenObjects;
 
-    [SerializeField]
-    private Transform cameraPos;
-
     private float maxDistance = 1000f;
-    private float viewAngle = 75f;
 
     public LayerMask monsterLayer;
 
@@ -34,19 +35,20 @@ public class CameraManager : MonoBehaviour
 
     void Update()
     {
-        GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
+        // 여러 몬스터 확인해야 할 때
+        /*GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
 
         foreach (GameObject monster in monsters)
         {
-            Vector3 toMonster = monster.transform.position - cameraPos.position;
-            float angle = Vector3.Angle(cameraPos.forward, toMonster);
+            Vector3 toMonster = monster.transform.position - Camera.main.transform.position;
+            float angle = Vector3.Angle(Camera.main.transform.forward, toMonster);
 
             testStatue statue = monster.GetComponent<testStatue>();
 
             if (angle < viewAngle)
             {
                 // 시야각 안에 있을 경우 Raycast로 시야 확보 확인
-                Ray ray = new Ray(cameraPos.position, toMonster.normalized);
+                Ray ray = new Ray(Camera.main.transform.position, toMonster.normalized);
                 if (Physics.Raycast(ray, out RaycastHit hit, maxDistance, monsterLayer))
                 {
                     if (hit.collider.gameObject == monster)
@@ -60,8 +62,8 @@ public class CameraManager : MonoBehaviour
 
             // 시야 밖이거나 Ray에 가려졌을 경우
             statue.isStared = false;
-            Debug.DrawRay(cameraPos.position, toMonster.normalized * maxDistance, Color.red);
-        }
+            Debug.DrawRay(Camera.main.transform.position, toMonster.normalized * maxDistance, Color.red);
+        }*/
     }
 
     public void EnterCameraMode()

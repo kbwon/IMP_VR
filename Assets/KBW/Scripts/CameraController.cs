@@ -11,7 +11,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private GameObject myTunnelingVignette;
     [SerializeField] private GameObject tunnelingVignette;
     [SerializeField] private GameObject hud;
-    [SerializeField] private Text activeTimeText;
+    [SerializeField] private Text activeTimeText1;
+    [SerializeField] private Text activeTimeText2;
 
     private float activeTime = 100f;
     private float coolDown = 0f;
@@ -63,9 +64,13 @@ public class CameraController : MonoBehaviour
         }
 
         // UI 텍스트 갱신
-        if (activeTimeText != null)
+        if (activeTimeText1 != null)
         {
-            activeTimeText.text = Mathf.Ceil(activeTime).ToString() + "%";
+            activeTimeText1.text = Mathf.Ceil(activeTime).ToString() + "%";
+        }
+        if (activeTimeText2 != null)
+        {
+            activeTimeText2.text = Mathf.Ceil(activeTime).ToString() + "%";
         }
 
         wasPressed = isPressed;
