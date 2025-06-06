@@ -8,6 +8,7 @@ public class IfCameraUsing : MonoBehaviour
 
     void Update()  // 병욱이 거 구현된 거 보고 최적화 할 듯
     {
+        isCameraOn = CameraManager.Instance.isCameraMode;
         if (isCameraOn == false) cameraOff();
         else cameraOn();
     }

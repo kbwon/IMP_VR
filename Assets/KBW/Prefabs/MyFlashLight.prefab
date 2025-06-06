@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7053602792242656467}
   - component: {fileID: 2297649192779454897}
   - component: {fileID: 6615965294113128283}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MyFlashLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 6374257551414763172}
   - component: {fileID: 7070706065389403766}
   - component: {fileID: 6608250563989923467}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

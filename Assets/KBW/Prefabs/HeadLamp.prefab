@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7053602792242656467}
   - component: {fileID: 2297649192779454897}
   - component: {fileID: 7318819157508883909}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HeadLamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.2727919, y: 0.9455255, z: 6.083}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6374257551414763172}
@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 6374257551414763172}
   - component: {fileID: 7070706065389403766}
   - component: {fileID: 6608250563989923467}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ Light:
   m_Type: 0
   m_Color: {r: 1, g: 0.9115597, b: 0.48584908, a: 1}
   m_Intensity: 5
-  m_Range: 5
+  m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 15
   m_CookieSize: 10
@@ -375,9 +375,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3756473180518285571, guid: 109885f84e97157448985e80c323d413, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -1688617927700330159, guid: 109885f84e97157448985e80c323d413, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 109885f84e97157448985e80c323d413, type: 3}
       propertyPath: m_Name
       value: mesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 109885f84e97157448985e80c323d413, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9078949020938347583, guid: 109885f84e97157448985e80c323d413, type: 3}
       propertyPath: m_LocalPosition.y
