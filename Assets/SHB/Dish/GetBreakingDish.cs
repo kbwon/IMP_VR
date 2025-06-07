@@ -5,8 +5,8 @@ public class GetBreakingDish : MonoBehaviour
 {
     public void getBreakingDish(GameObject piece)
     {
-        PlayerInventory.items.Add("DishFragment");
-        PlayerInventory.printAll();
+        PlayerInfo.Instance.items.Add("DishFragment");
+        PlayerInfo.Instance.printAll();
 
         // 잡힌 조각 제거
         Destroy(piece);

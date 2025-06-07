@@ -23,8 +23,8 @@ public class Headlamp : MonoBehaviour
 
     public void getHeadlamp()
     {
-        PlayerInventory.items.Add("Headlamp");
-        PlayerInventory.printAll();
+        PlayerInfo.Instance.items.Add("Headlamp");
+        PlayerInfo.Instance.printAll();
         Destroy(gameObject);
     }
 }

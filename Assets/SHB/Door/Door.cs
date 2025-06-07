@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
@@ -33,19 +34,35 @@ public class Door : MonoBehaviour
 
     public void grabDoorHandle()
     {
-        if (doorNumber != 0)
+
+        if (isDoorCollectWithMyKey() == false)
         {
-            if (isDoorCollectWithMyKey() == false)
-            {
-                doorSoundManager.cannotOpenSoundPlay();
-                haveKey = false;
-                changeGuideLetter();
-                return;
-            }
+            doorSoundManager.cannotOpenSoundPlay();
+            haveKey = false;
+            changeGuideLetter();
+            return;
         }
 
         player.transform.position = teleportLocation.position;
         if (isItLocker == true && isInsideLocker == false) player.transform.rotation = teleportLocation.rotation;
+
+        int firstPlayerWhere = 0;
+        if (isItLocker == false && inOutDoor.isIn == false) PlayerInfo.Instance.playerWhere = doorNumber;
+        else if (isItLocker == false && inOutDoor.isIn == true) PlayerInfo.Instance.playerWhere = 0;
+
+        else if (isItLocker == true && inOutDoor.isIn == false)
+        {
+            firstPlayerWhere = PlayerInfo.Instance.playerWhere;
+            PlayerInfo.Instance.playerWhere = 99;
+        }
+
+        else if (isItLocker == true && inOutDoor.isIn == true)
+        {
+            PlayerInfo.Instance.playerWhere = firstPlayerWhere;
+        }
+
+        PlayerInfo.Instance.printPlayerWhere();
+
         inOutDoor.isIn = !inOutDoor.isIn;  // 실내/실외 상태 업데이트
         inOutDoor.doorUpdate();
         doorSoundManager.canOpenSoundPlay();
@@ -53,12 +70,11 @@ public class Door : MonoBehaviour
 
     public bool isDoorCollectWithMyKey()  // 열쇠랑 문 번호가 맞는지 체크를 함.
     {
-        foreach (int keyNumber in PlayerInventory.keyNumberList)
+        foreach (int keyNumber in PlayerInfo.Instance.keyNumberList)
         {
             Debug.Log("플레이어가 가진 키: " + keyNumber);
             if (doorNumber == keyNumber)
             {
-                doorNumber = 0; // 열쇠가 맞으니 더 이상 매회 열쇠 체크할 필요가 없음. 문 번호 0으로 바꿈.
                 haveKey = true;
                 return true;
             }

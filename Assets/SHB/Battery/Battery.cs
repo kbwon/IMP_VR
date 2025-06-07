@@ -16,8 +16,8 @@ public class Battery : MonoBehaviour
 
     public void getBattery()
     {
-        PlayerInventory.items.Add("Battery");
-        PlayerInventory.printAll();
+        PlayerInfo.Instance.items.Add("Battery");
+        PlayerInfo.Instance.printAll();
         Destroy(gameObject);
     }
 }

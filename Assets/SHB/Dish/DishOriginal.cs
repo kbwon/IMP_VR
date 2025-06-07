@@ -7,6 +7,10 @@ public class DishOriginal : MonoBehaviour
     public GameObject dishSound;
     public AudioClip audioclip;
 
+    void Start()
+    {
+        brokenDish.SetActive(false);
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.relativeVelocity.magnitude > breakForce)

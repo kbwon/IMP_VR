@@ -2,11 +2,27 @@ using UnityEngine;
 
 public class ObjectDetectManager : MonoBehaviour
 {
+    public static ObjectDetectManager Instance { get; private set; }
+    private void Awake()
+    {
+
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject); // 씬 전환 시 유지하려면
+
+    }
+
     [System.Serializable]
     public class ObjectReactionPair
     {
-        public GameObject targetObject;         // 예: keyNumber2
-        public GameObject objectToActivate;     // 예: 사라졌을 때 등장할 피자국 등
+        public GameObject targetObject;
+        public GameObject[] objectToActivate;
         [HideInInspector] public bool hasDisappeared = false;
     }
 
@@ -17,7 +33,13 @@ public class ObjectDetectManager : MonoBehaviour
         foreach (var pair in objectPairs)
         {
             if (pair.objectToActivate != null)
-                pair.objectToActivate.SetActive(false);
+            {
+                foreach (var obj in pair.objectToActivate)
+                {
+                    if (obj != null)
+                        obj.SetActive(false);
+                }
+            }
         }
     }
 
@@ -30,7 +52,13 @@ public class ObjectDetectManager : MonoBehaviour
                 pair.hasDisappeared = true;
 
                 if (pair.objectToActivate != null)
-                    pair.objectToActivate.SetActive(true);
+                {
+                    foreach (var obj in pair.objectToActivate)
+                    {
+                        if (obj != null)
+                            obj.SetActive(true);
+                    }
+                }
             }
         }
     }
