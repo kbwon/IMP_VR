@@ -12,15 +12,10 @@ public class Door : MonoBehaviour
     public DoorSoundManager doorSoundManager;
     public TextMeshPro guideLetter;
     private GameObject player;
-    private int doorNumber;  //열쇠가 필요없는 문은 0번이다.
+    private int doorNumber;
 
     private bool haveKey = false;
-
-
-    [Header("락커의 경우, 얘만 건들 것")]
-    public bool isItLocker;
-    public bool isInsideLocker;
-
+    private int firstPlayerWhere = 7777;
 
     void Start()
     {
@@ -28,13 +23,11 @@ public class Door : MonoBehaviour
         doorNumber = inOutDoor.doorNumber;
 
         if (doorNumber == 0) haveKey = true;
-
-        isItLocker = inOutDoor.isItLocker;
     }
 
     public void grabDoorHandle()
     {
-
+        Debug.Log("그랩이 두 번 도냐?");
         if (isDoorCollectWithMyKey() == false)
         {
             doorSoundManager.cannotOpenSoundPlay();
@@ -44,22 +37,11 @@ public class Door : MonoBehaviour
         }
 
         player.transform.position = teleportLocation.position;
-        if (isItLocker == true && isInsideLocker == false) player.transform.rotation = teleportLocation.rotation;
+        if(doorNumber == 99) player.transform.rotation = teleportLocation.rotation;
 
-        int firstPlayerWhere = 0;
-        if (isItLocker == false && inOutDoor.isIn == false) PlayerInfo.Instance.playerWhere = doorNumber;
-        else if (isItLocker == false && inOutDoor.isIn == true) PlayerInfo.Instance.playerWhere = 0;
+        if (inOutDoor.isIn == false) PlayerInfo.Instance.playerWhere = doorNumber;
+        else if (inOutDoor.isIn == true) PlayerInfo.Instance.playerWhere = 0;
 
-        else if (isItLocker == true && inOutDoor.isIn == false)
-        {
-            firstPlayerWhere = PlayerInfo.Instance.playerWhere;
-            PlayerInfo.Instance.playerWhere = 99;
-        }
-
-        else if (isItLocker == true && inOutDoor.isIn == true)
-        {
-            PlayerInfo.Instance.playerWhere = firstPlayerWhere;
-        }
 
         PlayerInfo.Instance.printPlayerWhere();
 
@@ -72,7 +54,6 @@ public class Door : MonoBehaviour
     {
         foreach (int keyNumber in PlayerInfo.Instance.keyNumberList)
         {
-            Debug.Log("플레이어가 가진 키: " + keyNumber);
             if (doorNumber == keyNumber)
             {
                 haveKey = true;
@@ -90,8 +71,8 @@ public class Door : MonoBehaviour
         if (haveKey == true) guideLetter.text = "Press Grab to open";
         else guideLetter.text = "You don't have key.";
 
-        if (isItLocker == true && isInsideLocker == false) guideLetter.text = "Press Grab to hide";
-        else if (isItLocker == true && isInsideLocker == true) guideLetter.text = "Press grab to go outside";
+        if (doorNumber == 99 && !inOutDoor.isIn) guideLetter.text = "Press Grab to hide";
+        else if (doorNumber == 99 && inOutDoor.isIn) guideLetter.text = "Press grab to go outside";
     }
 
 }

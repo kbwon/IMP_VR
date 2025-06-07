@@ -14,7 +14,6 @@ public class InOutDoor : MonoBehaviour
 
     [Header("아래 항목들만 손댈 것")]
     public int doorNumber = 0;
-    public bool isItLocker = false;
 
     void Start()
     {

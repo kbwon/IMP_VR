@@ -9,6 +9,11 @@ public class Locker : MonoBehaviour
 
     public bool isPlayerChased = false;
     public bool isPlayerAndMonsterSameRoom = false;
+    public LockerInDoor lockerInDoor;
+    public LockerOutDoor lockerOutDoor;
+    public int roomNumber;
+
+    public bool isIn = false;
 
     public void locker()
     {
@@ -27,6 +32,21 @@ public class Locker : MonoBehaviour
                 Debug.Log("몬스터가 방에 들어왔다 나가는 거 소리 애니메이션 만들어서 재생할 거임");
                 Debug.Log("또한 이 경우에는 애니메이션 재생이 끝날 때까지 인터렉트 다 꺼버릴거임. 갑자기 중간에 나가버리면 안 되니까.");
             }
+        }
+    }
+
+    public void updateDoor()
+    {
+        if (isIn == false)
+        {
+            lockerInDoor.gameObject.SetActive(false);
+            lockerOutDoor.gameObject.SetActive(true);
+        }
+
+        else
+        {
+            lockerInDoor.gameObject.SetActive(true);
+            lockerOutDoor.gameObject.SetActive(false);
         }
     }
 }

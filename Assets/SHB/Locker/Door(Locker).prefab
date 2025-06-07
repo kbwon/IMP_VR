@@ -157,10 +157,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6547127614809111542}
-  - component: {fileID: 1053671138432936106}
   - component: {fileID: 7352445074001256875}
   - component: {fileID: 8620505804825961277}
   - component: {fileID: 572159910948038148}
+  - component: {fileID: 4624829182380460332}
   m_Layer: 0
   m_Name: OutDoor
   m_TagString: Untagged
@@ -186,24 +186,6 @@ Transform:
   - {fileID: 1759705244260845812}
   m_Father: {fileID: 5736141964004452125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1053671138432936106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3828914268975001624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8032b3366d77f04295d1aa103859b4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teleportLocation: {fileID: 8160077619707831666}
-  inOutDoor: {fileID: 4258561564628891500}
-  doorSoundManager: {fileID: 6946962164053395082}
-  guideLetter: {fileID: 8385123886681218856}
-  isItLocker: 1
-  isInsideLocker: 0
 --- !u!54 &7352445074001256875
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -280,18 +262,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1053671138432936106}
-        m_TargetAssemblyTypeName: Door, Assembly-CSharp
-        m_MethodName: changeGuideLetter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   m_HoverExited:
     m_PersistentCalls:
       m_Calls:
@@ -319,25 +289,13 @@ MonoBehaviour:
   m_SelectExited:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1053671138432936106}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Door, Assembly-CSharp
         m_MethodName: grabDoorHandle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Door, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -435,6 +393,21 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.07
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4624829182380460332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3828914268975001624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d511dda03335e844c95bffb0539c6a8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locker: {fileID: 5524625573913510488}
+  teleportLocation: {fileID: 8160077619707831666}
+  doorSoundManager: {fileID: 6946962164053395082}
 --- !u!1 &4080343696680700031
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,7 +591,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press Grab to Open
+  m_text: Press Grab to Hide
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -715,7 +688,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5736141964004452125}
-  - component: {fileID: 4258561564628891500}
   - component: {fileID: 5524625573913510488}
   m_Layer: 0
   m_Name: Door(Locker)
@@ -742,23 +714,6 @@ Transform:
   - {fileID: 6547127614809111542}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &4258561564628891500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7113742384229265079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5420f1488e1204d428b7808ae8891e01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inDoor: {fileID: 8161955427947505876}
-  outDoor: {fileID: 3828914268975001624}
-  isIn: 0
-  doorNumber: 0
-  isItLocker: 1
 --- !u!114 &5524625573913510488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -773,6 +728,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerChased: 0
   isPlayerAndMonsterSameRoom: 0
+  lockerInDoor: {fileID: 2696504980712843498}
+  lockerOutDoor: {fileID: 4624829182380460332}
+  roomNumber: 0
+  isIn: 0
 --- !u!1 &7419206820567131838
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,10 +773,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9179525154092660119}
-  - component: {fileID: 5283254530924516023}
   - component: {fileID: 6578620751516412484}
   - component: {fileID: 2887276223295109874}
   - component: {fileID: 9008632144459622106}
+  - component: {fileID: 2696504980712843498}
   m_Layer: 0
   m_Name: InDoor
   m_TagString: Untagged
@@ -843,24 +802,6 @@ Transform:
   - {fileID: 5671768636863153917}
   m_Father: {fileID: 5736141964004452125}
   m_LocalEulerAnglesHint: {x: 0, y: -179.914, z: 0}
---- !u!114 &5283254530924516023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8161955427947505876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8032b3366d77f04295d1aa103859b4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teleportLocation: {fileID: 5671768636863153917}
-  inOutDoor: {fileID: 4258561564628891500}
-  doorSoundManager: {fileID: 6946962164053395082}
-  guideLetter: {fileID: 8031098558446864198}
-  isItLocker: 1
-  isInsideLocker: 1
 --- !u!54 &6578620751516412484
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -937,18 +878,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 5283254530924516023}
-        m_TargetAssemblyTypeName: Door, Assembly-CSharp
-        m_MethodName: changeGuideLetter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   m_HoverExited:
     m_PersistentCalls:
       m_Calls:
@@ -976,8 +905,8 @@ MonoBehaviour:
   m_SelectExited:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5283254530924516023}
-        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+      - m_Target: {fileID: 2696504980712843498}
+        m_TargetAssemblyTypeName: LockerInDoor, Assembly-CSharp
         m_MethodName: grabDoorHandle
         m_Mode: 1
         m_Arguments:
@@ -1080,6 +1009,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.08, y: 0.08, z: 0.001}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2696504980712843498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8161955427947505876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bfca221bc27c924e9306920fc3a4496, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locker: {fileID: 5524625573913510488}
+  teleportLocation: {fileID: 5671768636863153917}
+  doorSoundManager: {fileID: 6946962164053395082}
 --- !u!1 &8342111516658251148
 GameObject:
   m_ObjectHideFlags: 0
@@ -1236,6 +1180,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9179525154092660119}
     m_Modifications:
+    - target: {fileID: 7018343491513920925, guid: 4b30f6c31b57ecd44951f6ab587900c6, type: 3}
+      propertyPath: m_text
+      value: Press Grab to go outside
+      objectReference: {fileID: 0}
     - target: {fileID: 8122806648988791859, guid: 4b30f6c31b57ecd44951f6ab587900c6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1341,17 +1289,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b30f6c31b57ecd44951f6ab587900c6, type: 3}
---- !u!114 &8031098558446864198 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7018343491513920925, guid: 4b30f6c31b57ecd44951f6ab587900c6, type: 3}
-  m_PrefabInstance: {fileID: 1013903300774079195}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8533813934933240744 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8681859404813123955, guid: 4b30f6c31b57ecd44951f6ab587900c6, type: 3}
