@@ -6,10 +6,16 @@ public class PlayerInfo : MonoBehaviour
 {
     public static PlayerInfo Instance { get; private set; }
 
+    public GameObject hud;
     public List<int> keyNumberList = new();
     public List<string> items = new();
     public bool camcoder = false;
     public int playerWhere = 0; //복도
+
+    void Start()
+    {
+        hud.SetActive(false);
+    }
 
     private void Awake()
     {
