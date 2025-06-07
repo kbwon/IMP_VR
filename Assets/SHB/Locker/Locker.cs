@@ -15,6 +15,13 @@ public class Locker : MonoBehaviour
 
     public bool isIn = false;
 
+    [Header("아래는 락커에 숨었을 때 필요한 것들")]
+    public AudioClip doorOpenSound;
+    public AudioClip doorCloseSound;
+    public AudioClip footstepSound;
+    public AudioClip lockerOpenSound;
+    public AudioSource audiosource;
+
     void Start()
     {
         lockerInDoor.gameObject.SetActive(false);
@@ -22,10 +29,17 @@ public class Locker : MonoBehaviour
 
     public void locker()
     {
+        //락커 안에 있을 때 절대 못 움직이게 하기. update를 이용하여 계속 transform을 고정하면 되지 않을까?
+
+        isPlayerChased = PlayerInfo.Instance.isPlayerChased;
+
         if (isPlayerChased == false) Debug.Log("아무 일도 안 일어남");
 
         else if (isPlayerChased == true)
         {
+            //if(PlayerInfo.Instance.playerWhere == 몬스터 위치) isPlayerAndMonsterSameRoom = true;
+            //else isPlayerAndMonsterSameRoom = false;
+
             if (isPlayerAndMonsterSameRoom == true)
             {
                 Debug.Log("죽는 애니메이션 만들어서 그거 쓸 거임");

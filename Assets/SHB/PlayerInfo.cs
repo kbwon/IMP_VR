@@ -11,6 +11,7 @@ public class PlayerInfo : MonoBehaviour
     public List<string> items = new();
     public bool camcoder = false;
     public int playerWhere = 0; //복도
+    public bool isPlayerChased = false;
 
     void Start()
     {

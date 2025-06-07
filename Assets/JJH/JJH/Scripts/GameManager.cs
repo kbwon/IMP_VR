@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     [Header("씬에 배치된 몬스터 오브젝트")]
     public GameObject dollMonsterObject;
     public GameObject bookheadMonsterObject;
+    public bool dollActive = false;
+    public bool bookheadActive = false;
 
     private MonsterAI dollMonster;
     private MonsterAI bookheadMonster;
@@ -57,6 +59,7 @@ public class GameManager : MonoBehaviour
             if (dollMonster != null)
                 dollMonster.SetChaseAndAttackEnabled(on);
         }
+        dollActive = true;
     }
 
     public void ToggleBookheadBehavior(bool on)
@@ -67,5 +70,6 @@ public class GameManager : MonoBehaviour
             if (bookheadMonster != null)
                 bookheadMonster.SetChaseAndAttackEnabled(on);
         }
+        bookheadActive = true;
     }
 }

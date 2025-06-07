@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 8539520396422314321}
   - component: {fileID: 4672491235976763415}
   - component: {fileID: 1523914877593175429}
-  - component: {fileID: 5924232375032129092}
   - component: {fileID: 3310081748304453125}
   - component: {fileID: 7755927977568077521}
   - component: {fileID: 732327341115220820}
   - component: {fileID: 5272026055847943415}
   - component: {fileID: 5331292348495022854}
+  - component: {fileID: 4647325439311553066}
   m_Layer: 0
   m_Name: Toilet
   m_TagString: Untagged
@@ -93,28 +93,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5924232375032129092
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3391618651121793826}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 370c3797211c1a74687c893be79c46c6, type: 3}
 --- !u!54 &3310081748304453125
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -228,19 +206,7 @@ MonoBehaviour:
         m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 732327341115220820}
-        m_TargetAssemblyTypeName: Toilet, Assembly-CSharp
-        m_MethodName: grabToilet
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_FirstFocusEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -324,8 +290,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38897f8d52bc17f4dae644d27b5dda31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bathAndToiletManager: {fileID: 0}
   guideLetter: {fileID: 340190959033471809}
   sounds: {fileID: 5272026055847943415}
+  toiletNumber: 0
 --- !u!114 &5272026055847943415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,6 +405,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &4647325439311553066
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3391618651121793826}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.537108, y: 1.223249, z: 0.89858997}
+  m_Center: {x: 0.00038799644, y: 0.6042485, z: -0.014733002}
 --- !u!1001 &8495766415903571653
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -527,7 +516,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8122806648988791859, guid: 4b30f6c31b57ecd44951f6ab587900c6, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.092
+      value: 1.344
       objectReference: {fileID: 0}
     - target: {fileID: 8122806648988791859, guid: 4b30f6c31b57ecd44951f6ab587900c6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
