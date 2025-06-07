@@ -15,6 +15,11 @@ public class Locker : MonoBehaviour
 
     public bool isIn = false;
 
+    void Start()
+    {
+        lockerInDoor.gameObject.SetActive(false);
+    }
+
     public void locker()
     {
         if (isPlayerChased == false) Debug.Log("아무 일도 안 일어남");
