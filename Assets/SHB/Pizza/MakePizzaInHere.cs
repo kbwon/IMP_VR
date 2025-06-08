@@ -30,6 +30,7 @@ public class MakePizzaInHere : MonoBehaviour
             pizzaTask++;
             Destroy(collision.gameObject);
             dough.SetActive(true);
+            finalPizza.GetComponent<FinalPizza>().dough = true;
         }
 
         if (pizzaTask == 1)
@@ -39,6 +40,7 @@ public class MakePizzaInHere : MonoBehaviour
                 Destroy(collision.gameObject);
                 hams.SetActive(true);
                 pizzaTask++;
+                finalPizza.GetComponent<FinalPizza>().hams = true;
             }
 
             else if (pizzastuff.hands == true)
@@ -46,6 +48,7 @@ public class MakePizzaInHere : MonoBehaviour
                 Destroy(collision.gameObject);
                 hands.SetActive(true);
                 pizzaTask++;
+                finalPizza.GetComponent<FinalPizza>().hands = true;
             }
         }
 

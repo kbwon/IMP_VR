@@ -75,6 +75,7 @@ public class ObjectDetectManager : MonoBehaviour
     public void whenIGotKeyNumber5()
     {
         PlayerInfo.Instance.isPlayerChased = true;
+        PlayerInfo.Instance.chasedByDoll = true;
         GameManager.Instance.dollMonsterObject.transform.position = sitDoll.transform.position;
         GameManager.Instance.dollMonsterObject.transform.rotation = sitDoll.transform.rotation;
         sitDoll.SetActive(false);

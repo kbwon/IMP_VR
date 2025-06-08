@@ -12,6 +12,8 @@ public class PlayerInfo : MonoBehaviour
     public bool camcoder = false;
     public int playerWhere = 0; //복도
     public bool isPlayerChased = false;
+    public bool chasedByBookhead = false;
+    public bool chasedByDoll = false;
 
     void Start()
     {
@@ -30,6 +32,9 @@ public class PlayerInfo : MonoBehaviour
         DontDestroyOnLoad(gameObject); // 씬 전환 시 유지하려면
 
         keyNumberList.Add(1);
+        keyNumberList.Add(4); //***테스트용
+        keyNumberList.Add(5);  //****테스트 용으로 추가
+        items.Add("DishFragment"); //****테스트 용
         keyNumberList.Add(99);
     }
 

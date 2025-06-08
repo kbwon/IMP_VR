@@ -37,13 +37,24 @@ public class Locker : MonoBehaviour
 
         else if (isPlayerChased == true)
         {
-            //if(PlayerInfo.Instance.playerWhere == 몬스터 위치) isPlayerAndMonsterSameRoom = true;
-            //else isPlayerAndMonsterSameRoom = false;
+            if(PlayerInfo.Instance.playerWhere == MonsterWhereManager.Instance.bookheadWhere || PlayerInfo.Instance.playerWhere == MonsterWhereManager.Instance.dollWhere)
+                isPlayerAndMonsterSameRoom = true;
+
+            else isPlayerAndMonsterSameRoom = false;
 
             if (isPlayerAndMonsterSameRoom == true)
             {
                 Debug.Log("죽는 애니메이션 만들어서 그거 쓸 거임");
                 Debug.Log("생각해보니 그럼 어떤 몬스터한테 쫓기고 있는지도 알아야 하겠네.");
+                if (PlayerInfo.Instance.chasedByBookhead)
+                {
+
+                }
+
+                else if (PlayerInfo.Instance.chasedByDoll)
+                {
+                    
+                }
             }
 
             else if (isPlayerAndMonsterSameRoom == false)
