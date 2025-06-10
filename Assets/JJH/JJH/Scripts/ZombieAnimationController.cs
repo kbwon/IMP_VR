@@ -4,9 +4,6 @@ public class ZombieAnimationController : MonoBehaviour
 {
     private Animator animator;
 
-    // 예: 성공 조건 (예: 플레이어가 가까이 있음 등)
-    public bool successCondition = false;
-
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -14,28 +11,38 @@ public class ZombieAnimationController : MonoBehaviour
 
     void Update()
     {
-        // 예시용: 스페이스바 누르면 성공 조건 체크
+        // 예시: 스페이스바로 성공 실행, F 키로 실패 실행
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            PlayReactionAnimation();
+            PlaySuccessReaction();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            PlayFailReaction();
         }
     }
 
-    void PlayReactionAnimation()
+    // ✅ 성공 애니메이션 실행
+    public void PlaySuccessReaction()
     {
-        // 먼저 모든 트리거 초기화 (선택 사항)
+        ResetAllTriggers();
+        animator.SetTrigger("SuccessTrigger");
+        Debug.Log("✅ 성공 애니메이션 실행");
+    }
+
+    // ❌ 실패 애니메이션 실행
+    public void PlayFailReaction()
+    {
+        ResetAllTriggers();
+        animator.SetTrigger("FailTrigger");
+        Debug.Log("❌ 실패 애니메이션 실행");
+    }
+
+    // 🔄 트리거 초기화 (선택사항)
+    private void ResetAllTriggers()
+    {
         animator.ResetTrigger("SuccessTrigger");
         animator.ResetTrigger("FailTrigger");
-
-        if (successCondition)
-        {
-            animator.SetTrigger("SuccessTrigger"); // Scream 1
-            Debug.Log("✅ 성공 트리거 실행");
-        }
-        else
-        {
-            animator.SetTrigger("FailTrigger"); // Scream 0
-            Debug.Log("❌ 실패 트리거 실행");
-        }
     }
 }
