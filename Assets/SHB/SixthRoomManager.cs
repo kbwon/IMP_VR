@@ -8,6 +8,12 @@ public class SixthRoomManager : MonoBehaviour
     private bool firstOpen = true;
     private bool firstOut = true;
     public Transform newTransform;
+    public GameObject keyNumber7;
+
+    void Start()
+    {
+        keyNumber7.SetActive(false);
+    }
 
     public void sixthRoomManagerOn()
     {
@@ -63,5 +69,7 @@ public class SixthRoomManager : MonoBehaviour
         GameManager.Instance.ToggleBookheadBehavior(true);
         PlayerInfo.Instance.isPlayerChased = true;
         PlayerInfo.Instance.chasedByBookhead = true;
+
+        keyNumber7.SetActive(true);
     }
 }
