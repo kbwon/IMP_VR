@@ -14,6 +14,7 @@ public class PlayerInfo : MonoBehaviour
     public bool isPlayerChased = false;
     public bool chasedByBookhead = false;
     public bool chasedByDoll = false;
+    public bool isDead = false;
 
     void Start()
     {

@@ -118,4 +118,14 @@ public class CameraManager : MonoBehaviour
         if (!hiddenObjects.Contains(obj))
             hiddenObjects.Add(obj);
     }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.collider == null) Debug.Log("콜라이더 감지 X");
+
+        if (hit.collider.gameObject.CompareTag("Monster"))
+        {
+            Debug.Log("죽음");
+        }
+    }
 }
