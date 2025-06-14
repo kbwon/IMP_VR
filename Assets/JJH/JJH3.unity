@@ -11901,9 +11901,7 @@ MonoBehaviour:
   wanderRadius: 10
   wanderTimer: 5
   attackDuration: 1.2
-  jumpScareDistance: 6
-  jumpScareSpeed: 10
-  jumpScareSound: {fileID: 8300000, guid: 85fec6ffbef9a5949be9a1dd86b176fe, type: 3}
+  attackSound: {fileID: 0}
   periodicGrowlSound: {fileID: 8300000, guid: 7b4bbc87db104a1458a7fabf8f49ca68, type: 3}
   growlInterval: 15
 --- !u!195 &652905832
@@ -12290,6 +12288,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dollMonsterObject: {fileID: 652905830}
   bookheadMonsterObject: {fileID: 1616546088}
+  dollActive: 0
+  bookheadActive: 0
 --- !u!4 &687350857
 Transform:
   m_ObjectHideFlags: 0
@@ -12601,12 +12601,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2239fc474db0aa24388dc650d123dafd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sitDoll: {fileID: 0}
+  spawnHeadlightTransform: {fileID: 0}
+  headLight: {fileID: 0}
   objectPairs:
   - targetObject: {fileID: 943110935}
-    objectToActivate: {fileID: 918328622}
+    objectToActivate:
+    - {fileID: 0}
+    onDisappearAction:
+      m_PersistentCalls:
+        m_Calls: []
     hasDisappeared: 0
   - targetObject: {fileID: 1598859930}
-    objectToActivate: {fileID: 2083182216}
+    objectToActivate:
+    - {fileID: 0}
+    onDisappearAction:
+      m_PersistentCalls:
+        m_Calls: []
     hasDisappeared: 0
 --- !u!4 &736381513
 Transform:
@@ -16571,19 +16582,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1194709827773744308, guid: cd4bfb7a3ef11084bab4c84b9bcbaca4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 3549125964268943201, guid: cd4bfb7a3ef11084bab4c84b9bcbaca4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 6266762211384449007, guid: cd4bfb7a3ef11084bab4c84b9bcbaca4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 8587645442214044730, guid: cd4bfb7a3ef11084bab4c84b9bcbaca4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd4bfb7a3ef11084bab4c84b9bcbaca4, type: 3}
 --- !u!4 &1188419851 stripped
 Transform:
@@ -19820,9 +19819,7 @@ MonoBehaviour:
   wanderRadius: 10
   wanderTimer: 5
   attackDuration: 1.2
-  jumpScareDistance: 6
-  jumpScareSpeed: 10
-  jumpScareSound: {fileID: 8300000, guid: d0f236e570a2de94cbaef96efee9e11d, type: 3}
+  attackSound: {fileID: 0}
   periodicGrowlSound: {fileID: 8300000, guid: 4628590701aeadd408c4cc98e3ee692f, type: 3}
   growlInterval: 5
 --- !u!95 &1616546091
@@ -21202,19 +21199,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1194709827773744308, guid: cd4bfb7a3ef11084bab4c84b9bcbaca4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 3549125964268943201, guid: cd4bfb7a3ef11084bab4c84b9bcbaca4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 6266762211384449007, guid: cd4bfb7a3ef11084bab4c84b9bcbaca4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 8587645442214044730, guid: cd4bfb7a3ef11084bab4c84b9bcbaca4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd4bfb7a3ef11084bab4c84b9bcbaca4, type: 3}
 --- !u!4 &1769731108 stripped
 Transform:
@@ -21498,6 +21483,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8492cbf7bbd8ace4bbf8abfa4957f530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hud: {fileID: 0}
+  keyNumberList: 
+  items: []
+  camcoder: 0
+  playerWhere: 0
+  isPlayerChased: 0
+  chasedByBookhead: 0
+  chasedByDoll: 0
+  isDead: 0
 --- !u!1001 &1828542022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22116,7 +22110,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 16847478086547695, guid: 5067b453a2dfec141af7570d1d1ee46f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 4210200044082572411, guid: 5067b453a2dfec141af7570d1d1ee46f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 611070614892041839, guid: 5067b453a2dfec141af7570d1d1ee46f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 4095019650757463563, guid: 5067b453a2dfec141af7570d1d1ee46f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 3026467251519222364, guid: 5067b453a2dfec141af7570d1d1ee46f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 5383825667493636947, guid: 5067b453a2dfec141af7570d1d1ee46f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 3046897270516081368, guid: 5067b453a2dfec141af7570d1d1ee46f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 5067b453a2dfec141af7570d1d1ee46f, type: 3}
 --- !u!1 &1867739841
 GameObject:
@@ -24228,9 +24243,7 @@ MonoBehaviour:
   wanderRadius: 10
   wanderTimer: 5
   attackDuration: 1.2
-  jumpScareDistance: 6
-  jumpScareSpeed: 10
-  jumpScareSound: {fileID: 0}
+  attackSound: {fileID: 0}
   periodicGrowlSound: {fileID: 0}
   growlInterval: 5
 --- !u!195 &2143230364
@@ -171500,7 +171513,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: f277bc5c6f12ec74bb972c2e8a820cf1, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 14857b1ea6cdc5a4b8a76a0fa02216c8, type: 2}
   m_BuildHeightMesh: 0
 --- !u!64 &64815042864666888
 MeshCollider:
@@ -182126,19 +182139,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1194709827773744308, guid: cd4bfb7a3ef11084bab4c84b9bcbaca4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 3549125964268943201, guid: cd4bfb7a3ef11084bab4c84b9bcbaca4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 6266762211384449007, guid: cd4bfb7a3ef11084bab4c84b9bcbaca4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 8587645442214044730, guid: cd4bfb7a3ef11084bab4c84b9bcbaca4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd4bfb7a3ef11084bab4c84b9bcbaca4, type: 3}
 --- !u!1001 &8318811359711200534
 PrefabInstance:
