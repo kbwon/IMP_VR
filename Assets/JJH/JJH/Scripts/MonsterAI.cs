@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
 
@@ -10,46 +10,65 @@ public class MonsterAI : MonoBehaviour
         BookheadMonster
     }
 
-    [Header("¸ó½ºÅÍ Å¸ÀÔ ¼³Á¤")]
+    [Header("ëª¬ìŠ¤í„° íƒ€ì… ì„¤ì •")]
     public MonsterType monsterType = MonsterType.BookheadMonster;
 
-    [Header("°¢ Å¸ÀÔº° ÃßÀû/°ø°İ Çã¿ë ¿©ºÎ")]
+    [Header("ê° íƒ€ì…ë³„ ì¶”ì /ê³µê²© í—ˆìš© ì—¬ë¶€")]
     public bool dollCanChaseAndAttack = false;
     public bool bookheadCanChaseAndAttack = true;
 
-    [Header("°øÅë ¼³Á¤")]
+    [Header("ê³µí†µ ì„¤ì •")]
     public Transform player;
-    public float chaseDistance = 8f;       // ÃßÀû ½ÃÀÛ °Å¸®
-    public float attackDistance = 2f;      // °ø°İ ¹üÀ§
-    public float wanderRadius = 10f;       // ¼øÂû ¹İ°æ
-    public float wanderTimer = 5f;         // ¼øÂû °£°İ
-    public float attackDuration = 1.2f;    // °ø°İ ¾Ö´Ï¸ŞÀÌ¼Ç Áö¼Ó ½Ã°£
+    public float chaseDistance = 8f;
+    public float attackDistance = 2f;
+    public float wanderRadius = 10f;
+    public float wanderTimer = 5f;
+    public float attackDuration = 1.2f;
+
+    [Header("ì í”„ ìŠ¤ì¼€ì–´ ì„¤ì •")]
+    public float jumpScareDistance = 6f;
+    public float jumpScareSpeed = 10f;
+    public AudioClip jumpScareSound;
+
+    [Header("ì£¼ê¸°ì  ì‚¬ìš´ë“œ ì„¤ì •")]
+    public AudioClip periodicGrowlSound;
+    public float growlInterval = 5f;
 
     private NavMeshAgent agent;
     private Animator animator;
+    private AudioSource audioSource;
+
     private float timer;
+    private float growlTimer = 0f;
     private bool isAttacking = false;
+    private bool jumpScareTriggered = false;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         timer = wanderTimer;
     }
 
     void Update()
     {
-        // 1) ÇöÀç ÀÌ ¸ó½ºÅÍ°¡ ¡°ÃßÀû/°ø°İ Çã¿ë »óÅÂ¡±ÀÎÁö ÆÇº°
         bool isEnabled = (monsterType == MonsterType.Doll)
                             ? dollCanChaseAndAttack
                             : bookheadCanChaseAndAttack;
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        // 2) Çã¿ë »óÅÂÀÌ°í, °Å¸® Á¶°ÇÀÌ ¸¸Á·µÉ ¶§¸¸ °ø°İ/ÃßÀû
+        // 1ï¸âƒ£ ì í”„ ìŠ¤ì¼€ì–´ íŠ¸ë¦¬ê±°
+        if (isEnabled && !jumpScareTriggered && distanceToPlayer <= jumpScareDistance)
+        {
+            StartCoroutine(TriggerJumpScare());
+            return;
+        }
+
+        // 2ï¸âƒ£ ì¼ë°˜ ê³µê²©
         if (isEnabled && distanceToPlayer <= attackDistance && !isAttacking)
         {
-            // °ø°İ »óÅÂ
             agent.SetDestination(transform.position);
             animator.speed = 1f;
             SetAnimation(false, true);
@@ -57,14 +76,12 @@ public class MonsterAI : MonoBehaviour
         }
         else if (isEnabled && distanceToPlayer <= chaseDistance && !isAttacking)
         {
-            // ÃßÀû »óÅÂ
             agent.SetDestination(player.position);
             animator.speed = 3f;
             SetAnimation(true, false);
         }
         else
         {
-            // ¼øÂû »óÅÂ
             if (!isAttacking)
             {
                 timer += Time.deltaTime;
@@ -79,6 +96,16 @@ public class MonsterAI : MonoBehaviour
                 animator.speed = 1f;
                 SetAnimation(isMoving, false);
             }
+        }
+
+        // 3ï¸âƒ£ ì£¼ê¸°ì  ì‚¬ìš´ë“œ ì¬ìƒ
+        growlTimer += Time.deltaTime;
+        if (growlTimer >= growlInterval)
+        {
+            if (periodicGrowlSound && audioSource)
+                audioSource.PlayOneShot(periodicGrowlSound);
+
+            growlTimer = 0f;
         }
     }
 
@@ -96,6 +123,27 @@ public class MonsterAI : MonoBehaviour
         isAttacking = false;
     }
 
+    IEnumerator TriggerJumpScare()
+    {
+        jumpScareTriggered = true;
+        isAttacking = true;
+
+        agent.speed = jumpScareSpeed;
+        agent.SetDestination(player.position);
+
+        SetAnimation(false, true); // ê¸°ì¡´ ê³µê²© ì• ë‹ˆë©”ì´ì…˜ ì‚¬ìš©
+
+        if (jumpScareSound && audioSource)
+            audioSource.PlayOneShot(jumpScareSound);
+
+        yield return new WaitForSeconds(attackDuration);
+
+        animator.SetBool("isAttacking", false);
+        agent.speed = 3f; // ê¸°ë³¸ ì¶”ì  ì†ë„ë¡œ ë³µê·€
+        isAttacking = false;
+        jumpScareTriggered = false;
+    }
+
     public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
     {
         Vector3 randDirection = Random.insideUnitSphere * dist;
@@ -106,12 +154,6 @@ public class MonsterAI : MonoBehaviour
         return navHit.position;
     }
 
-    // ============================
-    // 3) public ¸Ş¼­µå Ãß°¡: °¢ boolÀ» ÄÑ°í ²ø ¼ö ÀÖµµ·Ï
-    // ============================
-    /// <summary>
-    /// ÀÌ ¸ó½ºÅÍ°¡ ¼ÓÇÑ Å¸ÀÔ¿¡ ¸ÂÃß¾î chase/attack Çã¿ë(true) ¶Ç´Â ºñÇã¿ë(false)À¸·Î ¼³Á¤ÇÑ´Ù.
-    /// </summary>
     public void SetChaseAndAttackEnabled(bool enabled)
     {
         if (monsterType == MonsterType.Doll)
@@ -120,17 +162,11 @@ public class MonsterAI : MonoBehaviour
             bookheadCanChaseAndAttack = enabled;
     }
 
-    /// <summary>
-    /// ÇöÀç ¸ó½ºÅÍÀÇ ÃßÀû/°ø°İÀ» È°¼ºÈ­ÇÑ´Ù.
-    /// </summary>
     public void EnableChaseAndAttack()
     {
         SetChaseAndAttackEnabled(true);
     }
 
-    /// <summary>
-    /// ÇöÀç ¸ó½ºÅÍÀÇ ÃßÀû/°ø°İÀ» ºñÈ°¼ºÈ­ÇÑ´Ù.
-    /// </summary>
     public void DisableChaseAndAttack()
     {
         SetChaseAndAttackEnabled(false);
