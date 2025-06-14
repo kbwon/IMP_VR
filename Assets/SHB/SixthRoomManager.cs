@@ -9,10 +9,11 @@ public class SixthRoomManager : MonoBehaviour
     private bool firstOut = true;
     public Transform newTransform;
     public GameObject keyNumber7;
+    public Transform keyNewPosition;
 
     void Start()
     {
-        keyNumber7.SetActive(false);
+        keyNumber7.SetActive(true);
     }
 
     public void sixthRoomManagerOn()
@@ -20,6 +21,7 @@ public class SixthRoomManager : MonoBehaviour
         GameManager.Instance.bookheadMonsterObject.GetComponent<Animator>().runtimeAnimatorController = idleBookhead;
         GameManager.Instance.bookheadMonsterObject.GetComponent<MonsterAI>().enabled = false;
         GameManager.Instance.bookheadMonsterObject.SetActive(true);
+        Debug.Log("이게 도는거야?");
     }
 
     public void openDoorFirst()
@@ -70,6 +72,6 @@ public class SixthRoomManager : MonoBehaviour
         PlayerInfo.Instance.isPlayerChased = true;
         PlayerInfo.Instance.chasedByBookhead = true;
 
-        keyNumber7.SetActive(true);
+        keyNumber7.transform.position = keyNewPosition.position;
     }
 }

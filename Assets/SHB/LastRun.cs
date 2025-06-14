@@ -2,7 +2,12 @@ using UnityEngine;
 
 public class LastRun : MonoBehaviour
 {
-    public Transform setBookheadStartHere;
+    public GameObject lastBookhead;
+
+    void Awake()
+    {
+        lastBookhead.SetActive(false);
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -15,8 +20,8 @@ public class LastRun : MonoBehaviour
 
     public void setBookheadStart()
     {
-        GameManager.Instance.bookheadMonsterObject.SetActive(false);
-        GameManager.Instance.bookheadMonsterObject.transform.position = setBookheadStartHere.position;
-        GameManager.Instance.ToggleBookheadBehavior(true);
+        lastBookhead.SetActive(true);
+        PlayerInfo.Instance.isPlayerChased = true;
+        PlayerInfo.Instance.chasedByBookhead = true;
     }
 }
