@@ -8,6 +8,8 @@ TagManager:
   - Monster
   - Statue
   - Pizza
+  - Headlamp
+  - HeadDrop
   layers:
   - Default
   - TransparentFX

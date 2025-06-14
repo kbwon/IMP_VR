@@ -34,7 +34,6 @@ public class PlayerInfo : MonoBehaviour
 
         keyNumberList.Add(99);
         keyNumberList.Add(1);
-        keyNumberList.Add(3);
     }
 
     public void printAll()
