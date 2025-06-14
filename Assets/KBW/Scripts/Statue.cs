@@ -56,6 +56,7 @@ public class Statue : MonoBehaviour
                 {
                     Debug.Log("You died");
                     PlayerInfo.Instance.isDead = true;
+                    PlayerInfo.Instance.whenPlayerDied();
                     ignoreTimer = 0f;
                 }
             }
@@ -67,7 +68,7 @@ public class Statue : MonoBehaviour
         }
     }
 
-    //ÀÌ ÇÔ¼ö·Î Æ¯Á¤ Çàµ¿ÇÒ ½Ã ±ÙÃ³·Î µ¿»ó ÀÌµ¿ ½ÃÅ°¸é µÊ
+    //ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ Æ¯ï¿½ï¿½ ï¿½àµ¿ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½
     public void StatueTeleport(Vector3 pos)
     {
         transform.position = pos;   

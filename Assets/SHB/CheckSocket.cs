@@ -11,7 +11,7 @@ public class CheckSocket : MonoBehaviour
     void Update()
     {
         if (hasTriggered == true) return;
-
+        if (socketInteractor == null) return;
         if (socketInteractor.hasSelection)
         {
             IXRSelectInteractable selected = socketInteractor.GetOldestInteractableSelected();

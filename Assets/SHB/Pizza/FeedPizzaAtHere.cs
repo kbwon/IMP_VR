@@ -19,6 +19,7 @@ public class FeedPizzaAtHere : MonoBehaviour
             Debug.Log("피자에 햄을 넣으면 화냄");
             PlayerInfo.Instance.isDead = true;
             onAngryEvent?.Invoke();
+            PlayerInfo.Instance.whenPlayerDied();
         }
         else
         {

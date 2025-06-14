@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerInfo : MonoBehaviour
 {
@@ -45,5 +46,15 @@ public class PlayerInfo : MonoBehaviour
     public void printPlayerWhere()
     {
         Debug.Log("Player in " + playerWhere);
+    }
+
+    public void whenPlayerDied()
+    {
+        Destroy(GameManager.Instance.gameObject);
+        Destroy(ObjectDetectManager.Instance.gameObject);
+        Destroy(MonsterWhereManager.Instance.gameObject);
+        Destroy(PlayerInfo.Instance.gameObject);
+        Destroy(CanEscapeManager.Instance.gameObject);
+        SceneManager.LoadScene("Start_Scene");
     }
 }
