@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FourthRoomManager : MonoBehaviour
 {
@@ -16,11 +17,9 @@ public class FourthRoomManager : MonoBehaviour
     public IEnumerator dollMove()
     {
         yield return new WaitForSeconds(2f);
+        GameManager.Instance.dollMonsterObject.GetComponent<NavMeshAgent>().speed = 3.5f;
         GameManager.Instance.dollMonsterObject.SetActive(false);
         GameManager.Instance.dollMonsterObject.transform.position = dollMoveTransform.position;
         GameManager.Instance.dollMonsterObject.SetActive(true);
-//        GameManager.Instance.dollMonsterObject.GetComponent<MonsterAI>().enabled = true;
-        //        GameManager.Instance.dollMonsterObject.SetActive(false);
-        //        GameManager.Instance.ToggleDollBehavior(true);
     }
 }
