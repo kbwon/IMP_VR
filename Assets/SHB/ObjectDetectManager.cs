@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 public class ObjectDetectManager : MonoBehaviour
@@ -78,10 +79,11 @@ public class ObjectDetectManager : MonoBehaviour
         PlayerInfo.Instance.chasedByDoll = true;
         GameManager.Instance.dollMonsterObject.transform.position = sitDoll.transform.position;
         GameManager.Instance.dollMonsterObject.transform.rotation = sitDoll.transform.rotation;
+        GameManager.Instance.dollMonsterObject.GetComponent<NavMeshAgent>().speed = 1.0f;
         sitDoll.SetActive(false);
 
         StartCoroutine(MoveZ(GameManager.Instance.dollMonsterObject.transform, 3.01f, 0.5f));
-        
+
     }
 
     private IEnumerator MoveZ(Transform target, float deltaZ, float duration)
@@ -103,4 +105,25 @@ public class ObjectDetectManager : MonoBehaviour
         GameManager.Instance.dollMonsterObject.SetActive(false);
         GameManager.Instance.ToggleDollBehavior(true);
     }
+
+    public void RemoveAllLightsInScene()
+{
+    Light[] allLights = Object.FindObjectsByType<Light>(FindObjectsSortMode.None);
+
+    foreach (Light light in allLights)
+    {
+        var extra = light.GetComponent<UnityEngine.Rendering.Universal.UniversalAdditionalLightData>();
+        if (extra != null)
+            Destroy(extra); // URP 종속 컴포넌트 제거
+
+        Destroy(light); // Light 제거
+    }
+
+    // Baked 라이트맵 제거
+    LightmapSettings.lightmaps = new LightmapData[0];
+    LightmapSettings.lightProbes = null;
+
+    Debug.Log($"Removed {allLights.Length} lights and cleared baked lighting.");
+}
+
 }
