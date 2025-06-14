@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 // Plays and stops walking sound instantly as player moves or stops
 public class WalkingSound : MonoBehaviour
@@ -11,6 +12,7 @@ public class WalkingSound : MonoBehaviour
     private bool isMoving = false;
     private float checkInterval = 0.1f; // How often to check movement (seconds)
     private float checkTimer = 0f;
+    public AudioMixerGroup mixer;
 
     void Start()
     {
@@ -32,6 +34,7 @@ public class WalkingSound : MonoBehaviour
             walkingSource = gameObject.AddComponent<AudioSource>();
             walkingSource.clip = walkingClip;
             walkingSource.loop = true;
+            walkingSource.outputAudioMixerGroup = mixer;
             walkingSource.Play();
             isMoving = true;
         }
