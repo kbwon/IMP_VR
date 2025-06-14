@@ -4,7 +4,7 @@ public class Camcoder : MonoBehaviour
 {
     public void getCamcoder()
     {
-        PlayerInventory.camcoder = true;
+        PlayerInfo.Instance.camcoder = true;
         Destroy(gameObject);
     }
 }

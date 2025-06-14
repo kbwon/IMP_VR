@@ -9,6 +9,16 @@ public class IfCameraUsing : MonoBehaviour
     void Update()  // 병욱이 거 구현된 거 보고 최적화 할 듯
     {
         isCameraOn = CameraManager.Instance.isCameraMode;
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            GameManager.Instance.ToggleBookheadBehavior(true);
+        }
+
+        else if (Input.GetKeyDown(KeyCode.B))
+        {
+            GameManager.Instance.ToggleBookheadBehavior(false);
+            GameManager.Instance.bookheadMonsterObject.SetActive(true);
+        }
         if (isCameraOn == false) cameraOff();
         else cameraOn();
     }

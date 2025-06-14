@@ -85,7 +85,7 @@ public class BreakableWall : MonoBehaviour
 
     private bool InventoryHasItem(string target)
     {
-        foreach (string item in PlayerInventory.items)
+        foreach (string item in PlayerInfo.Instance.items)
         {
             if (item.Equals(target, StringComparison.Ordinal))
             {

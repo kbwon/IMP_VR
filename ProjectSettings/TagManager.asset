@@ -7,6 +7,9 @@ TagManager:
   - Anchor
   - Monster
   - Statue
+  - Pizza
+  - Headlamp
+  - HeadDrop
   layers:
   - Default
   - TransparentFX
