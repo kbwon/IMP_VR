@@ -20949,13 +20949,9 @@ PrefabInstance:
       propertyPath: socketInteractor
       value: 
       objectReference: {fileID: 102130924}
-    - target: {fileID: 5687472509437911461, guid: 8ba059e22f0b3dd498e570bb6e825bb1, type: 3}
-      propertyPath: m_TagString
-      value: HeadDrop
-      objectReference: {fileID: 0}
     - target: {fileID: 6431883425853401870, guid: 8ba059e22f0b3dd498e570bb6e825bb1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22.76
+      value: -0.05
       objectReference: {fileID: 0}
     - target: {fileID: 6431883425853401870, guid: 8ba059e22f0b3dd498e570bb6e825bb1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -20963,7 +20959,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6431883425853401870, guid: 8ba059e22f0b3dd498e570bb6e825bb1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.06
+      value: -8.08
       objectReference: {fileID: 0}
     - target: {fileID: 6431883425853401870, guid: 8ba059e22f0b3dd498e570bb6e825bb1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -21033,7 +21029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hud: {fileID: 222805410}
-  keyNumberList: 03000000
+  keyNumberList: 
   items: []
   camcoder: 0
   playerWhere: 0
