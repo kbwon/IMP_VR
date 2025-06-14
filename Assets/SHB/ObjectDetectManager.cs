@@ -7,6 +7,8 @@ public class ObjectDetectManager : MonoBehaviour
 {
     public static ObjectDetectManager Instance { get; private set; }
     public GameObject sitDoll;
+    public Transform spawnHeadlightTransform;
+    public GameObject headLight;
 
     private void Awake()
     {
@@ -107,23 +109,26 @@ public class ObjectDetectManager : MonoBehaviour
     }
 
     public void RemoveAllLightsInScene()
-{
-    Light[] allLights = Object.FindObjectsByType<Light>(FindObjectsSortMode.None);
-
-    foreach (Light light in allLights)
     {
-        var extra = light.GetComponent<UnityEngine.Rendering.Universal.UniversalAdditionalLightData>();
-        if (extra != null)
-            Destroy(extra); // URP 종속 컴포넌트 제거
+        Light[] allLights = Object.FindObjectsByType<Light>(FindObjectsSortMode.None);
 
-        Destroy(light); // Light 제거
+        Instantiate(headLight, spawnHeadlightTransform.position, Quaternion.identity);
+
+        foreach (Light light in allLights)
+        {
+            var extra = light.GetComponent<UnityEngine.Rendering.Universal.UniversalAdditionalLightData>();
+            if (extra != null)
+                Destroy(extra); // URP 종속 컴포넌트 제거
+
+            Destroy(light); // Light 제거
+        }
+
+        // Baked 라이트맵 제거
+        LightmapSettings.lightmaps = new LightmapData[0];
+        LightmapSettings.lightProbes = null;
+
+        Debug.Log($"Removed {allLights.Length} lights and cleared baked lighting.");
+
     }
-
-    // Baked 라이트맵 제거
-    LightmapSettings.lightmaps = new LightmapData[0];
-    LightmapSettings.lightProbes = null;
-
-    Debug.Log($"Removed {allLights.Length} lights and cleared baked lighting.");
-}
 
 }
