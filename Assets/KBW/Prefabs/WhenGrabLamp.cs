@@ -18,6 +18,7 @@ public class WhenGrabLamp : MonoBehaviour
     public void putOffHeadlamp()
     {
         this.transform.SetParent(null);
+        checkSocket = headDrop.GetComponent<CheckSocket>();
         checkSocket.hasTriggered = false;
     }
 }
