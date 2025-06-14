@@ -125,7 +125,15 @@ public class CameraManager : MonoBehaviour
 
         if (hit.collider.gameObject.CompareTag("Monster"))
         {
-            Debug.Log("죽음");
+            Debug.Log("플레이어 쪽 컨트롤러 콜리전 판정");
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Monster")
+        {
+            Debug.Log("플레이어 쪽 트리거 판정");
         }
     }
 }
