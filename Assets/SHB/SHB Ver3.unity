@@ -3492,10 +3492,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4201341776442948095, guid: 09bee10065edd074294303bf3912cd52, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09bee10065edd074294303bf3912cd52, type: 3}
 --- !u!4 &335403155 stripped
 Transform:
@@ -13635,6 +13632,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a9de49b379b5211459f7cd895a89bbb8, type: 3}
   m_PrefabInstance: {fileID: 1844249798}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &693246424
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5779540955461027715, guid: b8ffedc7928fb7b4d8e41ec5a9654f27, type: 3}
+      propertyPath: m_Name
+      value: HeadLamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136348917168209265, guid: b8ffedc7928fb7b4d8e41ec5a9654f27, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 23.249
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136348917168209265, guid: b8ffedc7928fb7b4d8e41ec5a9654f27, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.03194213
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136348917168209265, guid: b8ffedc7928fb7b4d8e41ec5a9654f27, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136348917168209265, guid: b8ffedc7928fb7b4d8e41ec5a9654f27, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136348917168209265, guid: b8ffedc7928fb7b4d8e41ec5a9654f27, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136348917168209265, guid: b8ffedc7928fb7b4d8e41ec5a9654f27, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136348917168209265, guid: b8ffedc7928fb7b4d8e41ec5a9654f27, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136348917168209265, guid: b8ffedc7928fb7b4d8e41ec5a9654f27, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136348917168209265, guid: b8ffedc7928fb7b4d8e41ec5a9654f27, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136348917168209265, guid: b8ffedc7928fb7b4d8e41ec5a9654f27, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b8ffedc7928fb7b4d8e41ec5a9654f27, type: 3}
 --- !u!1 &693701134
 GameObject:
   m_ObjectHideFlags: 0
@@ -21219,7 +21273,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4715719181553412768, guid: 8ba059e22f0b3dd498e570bb6e825bb1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -21261,6 +21316,7 @@ MonoBehaviour:
   isPlayerChased: 0
   chasedByBookhead: 0
   chasedByDoll: 0
+  isDead: 0
 --- !u!4 &1446081735
 Transform:
   m_ObjectHideFlags: 0
@@ -21783,6 +21839,10 @@ PrefabInstance:
     - target: {fileID: 5724085427188775462, guid: 9c6fd30d3e0cc2145b0a89a4958dfcc7, type: 3}
       propertyPath: animationName
       value: Ripping wall animation
+      objectReference: {fileID: 0}
+    - target: {fileID: 5891074836505588964, guid: 9c6fd30d3e0cc2145b0a89a4958dfcc7, type: 3}
+      propertyPath: doorNumber
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5946161127888824177, guid: 9c6fd30d3e0cc2145b0a89a4958dfcc7, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.size
@@ -26105,9 +26165,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!4 &1963192469
 Transform:
   m_ObjectHideFlags: 0
@@ -224708,3 +224768,4 @@ SceneRoots:
   - {fileID: 1825706823}
   - {fileID: 159019386}
   - {fileID: 1101105899}
+  - {fileID: 693246424}

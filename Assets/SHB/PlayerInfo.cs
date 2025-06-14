@@ -33,6 +33,7 @@ public class PlayerInfo : MonoBehaviour
         DontDestroyOnLoad(gameObject); // 씬 전환 시 유지하려면
 
         keyNumberList.Add(99);
+        keyNumberList.Add(1);
     }
 
     public void printAll()
