@@ -55,7 +55,6 @@ public class Statue : MonoBehaviour
                 if (ignoreTimer >= maxIgnoreTime)
                 {
                     Debug.Log("You died");
-                    PlayerInfo.Instance.isDead = true;
                     ignoreTimer = 0f;
                 }
             }
