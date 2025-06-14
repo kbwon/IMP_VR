@@ -19,20 +19,16 @@ public class MonsterAI : MonoBehaviour
 
     [Header("공통 설정")]
     public Transform player;
-    public float chaseDistance = 8f;
-    public float attackDistance = 2f;
-    public float wanderRadius = 10f;
-    public float wanderTimer = 5f;
-    public float attackDuration = 1.2f;
+    public float chaseDistance = 8f;       // 추적 시작 거리
+    public float attackDistance = 2f;      // 공격 범위
+    public float wanderRadius = 10f;       // 순찰 반경
+    public float wanderTimer = 5f;         // 순찰 간격
+    public float attackDuration = 1.2f;    // 공격 애니메이션 지속 시간
 
-    [Header("점프 스케어 설정")]
-    public float jumpScareDistance = 6f;
-    public float jumpScareSpeed = 10f;
-    public AudioClip jumpScareSound;
-
-    [Header("주기적 사운드 설정")]
-    public AudioClip periodicGrowlSound;
-    public float growlInterval = 5f;
+    [Header("사운드 설정")]
+    public AudioClip attackSound;              // 공격 시 재생할 사운드
+    public AudioClip periodicGrowlSound;       // 주기적으로 울리는 괴성
+    public float growlInterval = 5f;           // 괴성 간격 (초)
 
     private NavMeshAgent agent;
     private Animator animator;
@@ -41,7 +37,6 @@ public class MonsterAI : MonoBehaviour
     private float timer;
     private float growlTimer = 0f;
     private bool isAttacking = false;
-    private bool jumpScareTriggered = false;
 
     void Start()
     {
@@ -53,22 +48,17 @@ public class MonsterAI : MonoBehaviour
 
     void Update()
     {
+        // 1) 현재 이 몬스터가 “추적/공격 허용 상태”인지 판별
         bool isEnabled = (monsterType == MonsterType.Doll)
                             ? dollCanChaseAndAttack
                             : bookheadCanChaseAndAttack;
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        // 1️⃣ 점프 스케어 트리거
-        if (isEnabled && !jumpScareTriggered && distanceToPlayer <= jumpScareDistance)
-        {
-            StartCoroutine(TriggerJumpScare());
-            return;
-        }
-
-        // 2️⃣ 일반 공격
+        // 2) 허용 상태이고, 거리 조건이 만족될 때만 공격/추적
         if (isEnabled && distanceToPlayer <= attackDistance && !isAttacking)
         {
+            // 공격 상태
             agent.SetDestination(transform.position);
             animator.speed = 1f;
             SetAnimation(false, true);
@@ -76,12 +66,14 @@ public class MonsterAI : MonoBehaviour
         }
         else if (isEnabled && distanceToPlayer <= chaseDistance && !isAttacking)
         {
+            // 추적 상태
             agent.SetDestination(player.position);
             animator.speed = 3f;
             SetAnimation(true, false);
         }
         else
         {
+            // 순찰 상태
             if (!isAttacking)
             {
                 timer += Time.deltaTime;
@@ -98,7 +90,7 @@ public class MonsterAI : MonoBehaviour
             }
         }
 
-        // 3️⃣ 주기적 사운드 재생
+        // 3) 주기적 Growl 사운드
         growlTimer += Time.deltaTime;
         if (growlTimer >= growlInterval)
         {
@@ -118,30 +110,15 @@ public class MonsterAI : MonoBehaviour
     IEnumerator EndAttackAfter(float seconds)
     {
         isAttacking = true;
+
+        // 🔊 공격 사운드 재생
+        if (attackSound && audioSource)
+            audioSource.PlayOneShot(attackSound);
+
         yield return new WaitForSeconds(seconds);
-        animator.SetBool("isAttacking", false);
-        isAttacking = false;
-    }
-
-    IEnumerator TriggerJumpScare()
-    {
-        jumpScareTriggered = true;
-        isAttacking = true;
-
-        agent.speed = jumpScareSpeed;
-        agent.SetDestination(player.position);
-
-        SetAnimation(false, true); // 기존 공격 애니메이션 사용
-
-        if (jumpScareSound && audioSource)
-            audioSource.PlayOneShot(jumpScareSound);
-
-        yield return new WaitForSeconds(attackDuration);
 
         animator.SetBool("isAttacking", false);
-        agent.speed = 3f; // 기본 추적 속도로 복귀
         isAttacking = false;
-        jumpScareTriggered = false;
     }
 
     public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
@@ -154,6 +131,9 @@ public class MonsterAI : MonoBehaviour
         return navHit.position;
     }
 
+    /// <summary>
+    /// 이 몬스터가 속한 타입에 맞추어 chase/attack 허용(true) 또는 비허용(false)으로 설정한다.
+    /// </summary>
     public void SetChaseAndAttackEnabled(bool enabled)
     {
         if (monsterType == MonsterType.Doll)
@@ -162,11 +142,17 @@ public class MonsterAI : MonoBehaviour
             bookheadCanChaseAndAttack = enabled;
     }
 
+    /// <summary>
+    /// 현재 몬스터의 추적/공격을 활성화한다.
+    /// </summary>
     public void EnableChaseAndAttack()
     {
         SetChaseAndAttackEnabled(true);
     }
 
+    /// <summary>
+    /// 현재 몬스터의 추적/공격을 비활성화한다.
+    /// </summary>
     public void DisableChaseAndAttack()
     {
         SetChaseAndAttackEnabled(false);
