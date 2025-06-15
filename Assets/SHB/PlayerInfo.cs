@@ -55,7 +55,7 @@ public class PlayerInfo : MonoBehaviour
         Destroy(MonsterWhereManager.Instance.gameObject);
         Destroy(PlayerInfo.Instance.gameObject);
         Destroy(CanEscapeManager.Instance.gameObject);
-        YouWinOrDied.Instance.winOrDie = 1;
+        YouWinOrDied.Instance.winOrDie = 2;
         SceneManager.LoadScene("Start_Scene");
     }
 }

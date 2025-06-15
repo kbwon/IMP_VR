@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Statue : MonoBehaviour
 {
-    public bool isStared = false;
+    public bool isStared;
 
     [SerializeField]
     private float stareDistance = 5f;
@@ -11,14 +11,20 @@ public class Statue : MonoBehaviour
     private float maxIgnoreTime = 5f;
     [SerializeField]
     private float viewAngle = 75f;
+    [SerializeField]
+    private AudioClip stareSound;
+    [SerializeField]
+    private GameObject redLight;
 
     private float ignoreTimer = 0f;
     private GameObject eyes;
     private Transform cameraPos;
+    private AudioSource audioSource;
 
     void Start()
     {
         eyes = transform.GetChild(0).gameObject;
+        audioSource = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -42,6 +48,7 @@ public class Statue : MonoBehaviour
                 transform.rotation = baseRotation * yOffset;
 
                 if (eyes != null) eyes.SetActive(true);
+                if (redLight != null) redLight.SetActive(true);
 
                 ignoreTimer = 0f;
             }
@@ -50,6 +57,7 @@ public class Statue : MonoBehaviour
                 isStared = false;
 
                 if (eyes != null) eyes.SetActive(false);
+                if (redLight != null) redLight.SetActive(false);
 
                 ignoreTimer += Time.deltaTime;
                 if (ignoreTimer >= maxIgnoreTime)
@@ -65,6 +73,20 @@ public class Statue : MonoBehaviour
         {
             isStared = false;
             if (eyes != null) eyes.SetActive(false);
+            if (redLight != null) redLight.SetActive(false);
+        }
+
+        if (isStared)
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = stareSound;
+                audioSource.Play();
+            }
+        }
+        else
+        {
+            audioSource.Stop();
         }
     }
 

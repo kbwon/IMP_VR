@@ -9,10 +9,13 @@ public class BookheadMover : MonoBehaviour
     public Transform startPoint;  // 처음위치
     public Transform endPoint;    // 나중위치
 
+    public AudioClip bookHeadAppear; // 나타날 때 소리 추가
+
     public float moveSpeed = 2f;
 
     private bool isMoving = false;
     private Transform targetTransform;
+    private AudioSource audioSource;
 
     void Start()
     {
@@ -26,6 +29,8 @@ public class BookheadMover : MonoBehaviour
         {
             Debug.LogWarning("⚠️ targetObject가 비어 있습니다!");
         }
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -58,6 +63,8 @@ public class BookheadMover : MonoBehaviour
             targetTransform.position = startPoint.position;
             targetObject.SetActive(true); // 활성화
             isMoving = true;
+            audioSource.clip = bookHeadAppear;
+            audioSource.Play();
         }
     }
 
