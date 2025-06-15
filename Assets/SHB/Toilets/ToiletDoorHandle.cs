@@ -13,8 +13,8 @@ public class ToiletDoorHandle : MonoBehaviour
     {
         if (onlyOnce == false)
         {
-            toiletDoorAllManager.whenThird();
             onlyOnce = true;
+            toiletDoorAllManager.whenThird();
             StartCoroutine(RotateDoor());
         }
     }
