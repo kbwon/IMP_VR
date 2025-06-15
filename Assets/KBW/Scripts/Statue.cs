@@ -42,7 +42,6 @@ public class Statue : MonoBehaviour
             {
                 isStared = true;
                 Vector3 lookDir = cameraPos.position - transform.position;
-
                 Quaternion baseRotation = Quaternion.LookRotation(-lookDir);
                 Quaternion yOffset = Quaternion.Euler(0, 60f, 0);
                 transform.rotation = baseRotation * yOffset;
@@ -51,6 +50,8 @@ public class Statue : MonoBehaviour
                 if (redLight != null) redLight.SetActive(true);
 
                 ignoreTimer = 0f;
+
+                audioSource.Stop();
             }
             else
             {
@@ -58,6 +59,12 @@ public class Statue : MonoBehaviour
 
                 if (eyes != null) eyes.SetActive(false);
                 if (redLight != null) redLight.SetActive(false);
+
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.clip = stareSound;
+                    audioSource.Play();
+                }
 
                 ignoreTimer += Time.deltaTime;
                 if (ignoreTimer >= maxIgnoreTime)
@@ -74,18 +81,6 @@ public class Statue : MonoBehaviour
             isStared = false;
             if (eyes != null) eyes.SetActive(false);
             if (redLight != null) redLight.SetActive(false);
-        }
-
-        if (isStared)
-        {
-            if (!audioSource.isPlaying)
-            {
-                audioSource.clip = stareSound;
-                audioSource.Play();
-            }
-        }
-        else
-        {
             audioSource.Stop();
         }
     }
