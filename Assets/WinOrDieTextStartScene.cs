@@ -2,15 +2,27 @@ using UnityEngine;
 
 public class WinOrDieTextStartScene : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public GameObject dieText;
+    public GameObject winText;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (YouWinOrDied.Instance.winOrDie == 1)
+        {
+            dieText.SetActive(false);
+            winText.SetActive(true);
+        }
+
+        else if (YouWinOrDied.Instance.winOrDie == 2)
+        {
+            dieText.SetActive(true);
+            winText.SetActive(false);
+        }
+
+        else
+        {
+            dieText.SetActive(false);
+            winText.SetActive(false);
+        }
     }
 }
