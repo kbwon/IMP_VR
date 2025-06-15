@@ -22280,6 +22280,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 222805410}
     - target: {fileID: 2007662440378403655, guid: 8ba059e22f0b3dd498e570bb6e825bb1, type: 3}
+      propertyPath: cameraSound
+      value: 
+      objectReference: {fileID: 8300000, guid: f12d952031b9a484f9dd7aca8e36a639, type: 3}
+    - target: {fileID: 2007662440378403655, guid: 8ba059e22f0b3dd498e570bb6e825bb1, type: 3}
       propertyPath: activeTimeText1
       value: 
       objectReference: {fileID: 362330233}

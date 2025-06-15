@@ -13,11 +13,19 @@ public class CameraController : MonoBehaviour
     [SerializeField] private GameObject hud;
     [SerializeField] private Text activeTimeText1;
     [SerializeField] private Text activeTimeText2;
+    [SerializeField] private AudioClip cameraSound;
 
+    private AudioSource audioSource;
     private float activeTime = 100f;
     private float coolDown = 0f;
     private bool isCameraActive = false;
     private bool wasPressed = false;
+
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>(); 
+    }
 
     private void Update()
     {
@@ -30,6 +38,8 @@ public class CameraController : MonoBehaviour
             if(isCameraActive && activeTime > 0)
             {
                 Debug.Log("Camera On");
+                audioSource.clip = cameraSound;
+                audioSource.Play();
                 CameraManager.Instance.EnterCameraMode();
                 if (tunnelingVignette != null) tunnelingVignette.SetActive(false);
                 if (myTunnelingVignette != null) myTunnelingVignette.SetActive(true);
