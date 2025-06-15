@@ -53,6 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyNumber: 1
   isAlwaysShow: 1
+  pickupSoundclip: {fileID: 8300000, guid: fbf1f4a904acdd043a77e304e7af3bee, type: 3}
 --- !u!65 &1635795522800048927
 BoxCollider:
   m_ObjectHideFlags: 0

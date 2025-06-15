@@ -5,10 +5,12 @@ using UnityEngine.AI;
 public class FourthRoomManager : MonoBehaviour
 {
     public Transform dollMoveTransform;
+    private bool playOnce = false;
     public void playerGoOut()  // 플레이어가 인형이 활성화 되었을 때 방 밖으로 나가게 되면
     {
         if (GameManager.Instance.dollActive == true)
         {
+            if (playOnce == true) return;
             CanEscapeManager.Instance.canEscape = true;
             StartCoroutine(dollMove());
         }
@@ -21,5 +23,6 @@ public class FourthRoomManager : MonoBehaviour
         GameManager.Instance.dollMonsterObject.SetActive(false);
         GameManager.Instance.dollMonsterObject.transform.position = dollMoveTransform.position;
         GameManager.Instance.dollMonsterObject.SetActive(true);
+        playOnce = true;
     }
 }

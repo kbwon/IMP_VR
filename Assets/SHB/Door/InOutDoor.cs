@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Transactions;
 using TMPro;
@@ -7,7 +8,7 @@ using UnityEngine.InputSystem;
 
 public class InOutDoor : MonoBehaviour
 {
-    
+
     public GameObject inDoor;
     public GameObject outDoor;
     public bool isIn = false;  //시작할 땐 밖에 있음.
@@ -17,12 +18,36 @@ public class InOutDoor : MonoBehaviour
 
     void Start()
     {
+        outDoor.SetActive(true);
         inDoor.SetActive(false);
     }
     public void doorUpdate()
     {
-        inDoor.SetActive(isIn);   // 밖에 있으면outDoor 보여줌
-        outDoor.SetActive(!isIn);   // 안에 있으면 inDoor 보여줌
+        if (isIn == true)
+        {
+            outDoor.SetActive(false);
+            StartCoroutine(DelayedOutDoorUpdate(0.5f));
+        }
 
+        else
+        {
+            inDoor.SetActive(false);
+            StartCoroutine(DelayedOutDoorUpdate(0.5f));
+        }
+    }
+
+    private IEnumerator DelayedOutDoorUpdate(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (isIn == true)
+        {
+            inDoor.SetActive(true);
+        }
+
+        else
+        {
+            outDoor.SetActive(true);
+        }
+        
     }
 }

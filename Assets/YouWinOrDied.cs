@@ -15,5 +15,7 @@ public class YouWinOrDied : MonoBehaviour
         {
             Destroy(gameObject); // 중복 방지
         }
+
+        if (PlayerInfo.Instance.gameObject != null) Destroy(PlayerInfo.Instance.gameObject);
     }
 }

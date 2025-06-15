@@ -2,6 +2,7 @@ using System;
 using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 
 public class Door : MonoBehaviour
@@ -33,6 +34,17 @@ public class Door : MonoBehaviour
             haveKey = false;
             changeGuideLetter();
             return;
+        }
+
+        if (doorNumber == 7)
+        {
+            Destroy(GameManager.Instance.gameObject);
+            Destroy(ObjectDetectManager.Instance.gameObject);
+            Destroy(MonsterWhereManager.Instance.gameObject);
+            Destroy(PlayerInfo.Instance.gameObject);
+            Destroy(CanEscapeManager.Instance.gameObject);
+            YouWinOrDied.Instance.winOrDie = 1;
+            SceneManager.LoadScene("Start_Scene");
         }
 
         player.transform.position = teleportLocation.position;
