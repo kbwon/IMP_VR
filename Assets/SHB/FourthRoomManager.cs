@@ -17,7 +17,7 @@ public class FourthRoomManager : MonoBehaviour
     public IEnumerator dollMove()
     {
         yield return new WaitForSeconds(2f);
-        GameManager.Instance.dollMonsterObject.GetComponent<NavMeshAgent>().speed = 3.5f;
+        GameManager.Instance.dollMonsterObject.GetComponent<NavMeshAgent>().speed = 3f;
         GameManager.Instance.dollMonsterObject.SetActive(false);
         GameManager.Instance.dollMonsterObject.transform.position = dollMoveTransform.position;
         GameManager.Instance.dollMonsterObject.SetActive(true);

@@ -15,7 +15,7 @@ public class Bath : MonoBehaviour
     IEnumerator DrainRoutine()
     {
         float halfDuration = 1.5f;
-
+        GetComponent<Sounds>().PlayRandomSound();
         // 1단계: 현재 위치 → waterMoveHere1
         yield return StartCoroutine(MoveWater(water.transform, waterMoveHere1, halfDuration));
 

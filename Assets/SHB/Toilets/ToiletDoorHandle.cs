@@ -5,15 +5,23 @@ public class ToiletDoorHandle : MonoBehaviour
 {
     public ToiletDoorAllManager toiletDoorAllManager;
     public GameObject toiletDoor;
+    public Sounds sound;
+
+    private bool onlyOnce = false;
 
     public void grabHandle()
     {
-        toiletDoorAllManager.whenThird();
-        StartCoroutine(RotateDoor());
+        if (onlyOnce == false)
+        {
+            toiletDoorAllManager.whenThird();
+            onlyOnce = true;
+            StartCoroutine(RotateDoor());
+        }
     }
 
     IEnumerator RotateDoor()
     {
+        sound.PlayRandomSound();
         float duration = 1f;
         float elapsed = 0f;
 
