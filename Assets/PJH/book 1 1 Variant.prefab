@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &118729129652437075
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 52950583325085551, guid: b5609a78eb5269d46bb258ba9c4f308c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016362441608968514, guid: b5609a78eb5269d46bb258ba9c4f308c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.0077155773
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016362441608968514, guid: b5609a78eb5269d46bb258ba9c4f308c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.0077155773
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016362441608968514, guid: b5609a78eb5269d46bb258ba9c4f308c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.1055212
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016362441608968514, guid: b5609a78eb5269d46bb258ba9c4f308c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.80111647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016362441608968514, guid: b5609a78eb5269d46bb258ba9c4f308c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.1670742
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016362441608968514, guid: b5609a78eb5269d46bb258ba9c4f308c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5791886
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016362441608968514, guid: b5609a78eb5269d46bb258ba9c4f308c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.405636
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016362441608968514, guid: b5609a78eb5269d46bb258ba9c4f308c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.405636
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016362441608968514, guid: b5609a78eb5269d46bb258ba9c4f308c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5791886
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016362441608968514, guid: b5609a78eb5269d46bb258ba9c4f308c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -70.011
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016362441608968514, guid: b5609a78eb5269d46bb258ba9c4f308c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016362441608968514, guid: b5609a78eb5269d46bb258ba9c4f308c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789915024711646105, guid: b5609a78eb5269d46bb258ba9c4f308c, type: 3}
+      propertyPath: m_Name
+      value: book 1 1 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342274988069849658, guid: b5609a78eb5269d46bb258ba9c4f308c, type: 3}
+      propertyPath: m_text
+      value: "This Place is something strange...\nThis is a guide to getting out
+        of this place\r\nalive. \nCheck the drawer and wish you good luck...\r\n\"Only
+        those who see beyond the surface can escape.\""
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342274988069849658, guid: b5609a78eb5269d46bb258ba9c4f308c, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8296477439772496166, guid: b5609a78eb5269d46bb258ba9c4f308c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 8296477439772496166, guid: b5609a78eb5269d46bb258ba9c4f308c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.4035421
+      objectReference: {fileID: 0}
+    - target: {fileID: 8296477439772496166, guid: b5609a78eb5269d46bb258ba9c4f308c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.57594055
+      objectReference: {fileID: 0}
+    - target: {fileID: 8296477439772496166, guid: b5609a78eb5269d46bb258ba9c4f308c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.58065015
+      objectReference: {fileID: 0}
+    - target: {fileID: 8296477439772496166, guid: b5609a78eb5269d46bb258ba9c4f308c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.41023374
+      objectReference: {fileID: 0}
+    - target: {fileID: 8296477439772496166, guid: b5609a78eb5269d46bb258ba9c4f308c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 19.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8296477439772496166, guid: b5609a78eb5269d46bb258ba9c4f308c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -70.26001
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b5609a78eb5269d46bb258ba9c4f308c, type: 3}
