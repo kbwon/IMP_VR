@@ -3,13 +3,13 @@ using System.Collections;
 
 public class SixthRoomManager : MonoBehaviour
 {
-    public RuntimeAnimatorController idleBookhead;
-    public RuntimeAnimatorController originalBookhead;
-    private bool firstOpen = true;
-    private bool firstOut = true;
-    public Transform newTransform;
-    public GameObject keyNumber7;
-    public Transform keyNewPosition;
+    public RuntimeAnimatorController idleBookhead;       // Bookhead's idle animation
+    public RuntimeAnimatorController originalBookhead;   // Bookhead's chase animation
+    private bool firstOpen = true;  // Whether the door has been opened for the first time
+    private bool firstOut = true;   // Whether the player has exited for the first time
+    public Transform newTransform;  // Position to teleport Bookhead to
+    public GameObject keyNumber7;   // Key object to move later
+    public Transform keyNewPosition; // New position for the key
 
     void Start()
     {
@@ -21,15 +21,15 @@ public class SixthRoomManager : MonoBehaviour
         GameManager.Instance.bookheadMonsterObject.GetComponent<Animator>().runtimeAnimatorController = idleBookhead;
         GameManager.Instance.bookheadMonsterObject.GetComponent<MonsterAI>().enabled = false;
         GameManager.Instance.bookheadMonsterObject.SetActive(true);
-        Debug.Log("이게 도는거야?");
+        Debug.Log("Is this being called?");
     }
 
     public void openDoorFirst()
     {
-        if (!firstOpen) return; // false면 아무것도 안 함
+        if (!firstOpen) return;  // If already triggered once, do nothing
 
         firstOpen = false;
-        StartCoroutine(DelayedBookheadAwaken()); // true일 때만 5초 후 실행
+        StartCoroutine(DelayedBookheadAwaken());  // Trigger after 5 seconds
     }
 
     public void goOutDoorFirst()
@@ -50,9 +50,9 @@ public class SixthRoomManager : MonoBehaviour
         GameManager.Instance.bookheadMonsterObject.GetComponent<Animator>().runtimeAnimatorController = originalBookhead;
         GameManager.Instance.bookheadMonsterObject.GetComponent<MonsterAI>().enabled = true;
         GameManager.Instance.bookheadMonsterObject.SetActive(false);
-        GameManager.Instance.ToggleBookheadBehavior(false);
+        GameManager.Instance.ToggleBookheadBehavior(false); // Ensure clean reset
 
-        GameManager.Instance.ToggleBookheadBehavior(true);
+        GameManager.Instance.ToggleBookheadBehavior(true);  // Start chasing
         PlayerInfo.Instance.isPlayerChased = true;
         PlayerInfo.Instance.chasedByBookhead = true;
     }
@@ -60,6 +60,7 @@ public class SixthRoomManager : MonoBehaviour
     private IEnumerator DelayedBookheadFollowPlayer()
     {
         yield return new WaitForSeconds(2f);
+
         GameManager.Instance.bookheadMonsterObject.GetComponent<Animator>().runtimeAnimatorController = originalBookhead;
         GameManager.Instance.bookheadMonsterObject.GetComponent<MonsterAI>().enabled = true;
         GameManager.Instance.bookheadMonsterObject.SetActive(false);

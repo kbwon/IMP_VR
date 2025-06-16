@@ -2,18 +2,19 @@ using UnityEngine;
 
 public class IfCameraUsing : MonoBehaviour
 {
-    public GameObject cameraOffObject;
-    public GameObject cameraOnObject;
-    public bool isCameraOn = false;
+    public GameObject cameraOffObject; // Object to show when camera mode is off
+    public GameObject cameraOnObject;  // Object to show when camera mode is on
+    public bool isCameraOn = false;    // Current camera mode state
 
-    void Update()  // 병욱이 거 구현된 거 보고 최적화 할 듯
+    void Update()
     {
         isCameraOn = CameraManager.Instance.isCameraMode;
- 
+
         if (isCameraOn == false) cameraOff();
         else cameraOn();
     }
 
+    // Activates camera mode objects and disables others
     public void cameraOn()
     {
         cameraOffObject.SetActive(false);
@@ -21,6 +22,7 @@ public class IfCameraUsing : MonoBehaviour
         isCameraOn = true;
     }
 
+    // Deactivates camera mode objects and enables others
     public void cameraOff()
     {
         cameraOffObject.SetActive(true);

@@ -7,17 +7,19 @@ using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 
 public class Door : MonoBehaviour
 {
+    // (Do not modify anything in this section)
     [Header("아무것도 건들지 말 것")]
-    public Transform teleportLocation;
-    public InOutDoor inOutDoor;
-    public DoorSoundManager doorSoundManager;
-    public TextMeshPro guideLetter;
-    private GameObject player;
-    private int doorNumber;
+    public Transform teleportLocation; // Where the player will be teleported to
+    public InOutDoor inOutDoor; // Reference to indoor/outdoor door state manager
+    public DoorSoundManager doorSoundManager; // Sound manager for door interactions
+    public TextMeshPro guideLetter; // UI text to display door-related messages
+    private GameObject player; // Reference to the player object
+    private int doorNumber; // This door's unique number
 
-    private bool haveKey = false;
-    private int firstPlayerWhere = 7777;
+    private bool haveKey = false; // Whether the player has the right key
+    private int firstPlayerWhere = 7777; // Initial player location value (not used here)
 
+    // Initializes door state and gets references to the player and door number
     void Start()
     {
         player = GameObject.FindWithTag("Player");
@@ -26,6 +28,7 @@ public class Door : MonoBehaviour
         if (doorNumber == 0) haveKey = true;
     }
 
+    // Called when the player grabs the door handle
     public void grabDoorHandle()
     {
         if (isDoorCollectWithMyKey() == false)
@@ -36,6 +39,7 @@ public class Door : MonoBehaviour
             return;
         }
 
+        // Door #7 triggers game completion logic
         if (doorNumber == 7)
         {
             Destroy(GameManager.Instance.gameObject);
@@ -47,23 +51,25 @@ public class Door : MonoBehaviour
             SceneManager.LoadScene("Start_Scene");
         }
 
+        // Teleport player to the target location
         player.transform.position = teleportLocation.position;
         if (doorNumber == 99) player.transform.rotation = teleportLocation.rotation;
 
+        // Update player location info
         if (inOutDoor.isIn == false) PlayerInfo.Instance.playerWhere = doorNumber;
         else if (inOutDoor.isIn == true) PlayerInfo.Instance.playerWhere = 0;
 
-
         PlayerInfo.Instance.printPlayerWhere();
 
-        inOutDoor.isIn = !inOutDoor.isIn;  // 실내/실외 상태 업데이트
-        inOutDoor.doorUpdate();
-        doorSoundManager.canOpenSoundPlay();
+        inOutDoor.isIn = !inOutDoor.isIn; // Toggle indoor/outdoor state
+        inOutDoor.doorUpdate(); // Refresh door appearance/state
+        doorSoundManager.canOpenSoundPlay(); // Play opening sound
 
-        if (doorNumber == 7) Debug.Log("탈출 성공");
+        if (doorNumber == 7) Debug.Log("Escape successful");
     }
 
-    public bool isDoorCollectWithMyKey()  // 열쇠랑 문 번호가 맞는지 체크를 함.
+    // Returns true if the player has a key that matches this door's number
+    public bool isDoorCollectWithMyKey()
     {
         foreach (int keyNumber in PlayerInfo.Instance.keyNumberList)
         {
@@ -77,6 +83,7 @@ public class Door : MonoBehaviour
         return false;
     }
 
+    // Updates the guide text depending on key possession and door state
     public void changeGuideLetter()
     {
         isDoorCollectWithMyKey();
@@ -87,5 +94,4 @@ public class Door : MonoBehaviour
         if (doorNumber == 99 && !inOutDoor.isIn) guideLetter.text = "Press Grab to hide";
         else if (doorNumber == 99 && inOutDoor.isIn) guideLetter.text = "Press grab to go outside";
     }
-
 }

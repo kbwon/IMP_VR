@@ -12,7 +12,7 @@ public class PlayerInfo : MonoBehaviour
     public List<int> keyNumberList = new();
     public List<string> items = new();
     public bool camcoder = false;
-    public int playerWhere = 0; //복도
+    public int playerWhere = 0; // 0 = hallway
     public bool isPlayerChased = false;
     public bool chasedByBookhead = false;
     public bool chasedByDoll = false;
@@ -26,6 +26,7 @@ public class PlayerInfo : MonoBehaviour
 
     private void Awake()
     {
+        // Ensure singleton instance
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -33,7 +34,7 @@ public class PlayerInfo : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject); // 씬 전환 시 유지하려면
+        DontDestroyOnLoad(gameObject); // Persist across scenes
 
         keyNumberList.Add(99);
         keyNumberList.Add(1);
@@ -54,23 +55,23 @@ public class PlayerInfo : MonoBehaviour
     public void whenPlayerDied()
     {
         dieSphere.SetActive(true);
-        // Shader의 알파값 조절 코루틴 시작
+        // Start coroutine to fade in death screen shader
         StartCoroutine(FadeInDieSphere());
 
-        // 나머지 오브젝트 제거
+        // Destroy remaining objects
         Destroy(GameManager.Instance.gameObject);
         Destroy(ObjectDetectManager.Instance.gameObject);
         Destroy(MonsterWhereManager.Instance.gameObject);
         Destroy(CanEscapeManager.Instance.gameObject);
         YouWinOrDied.Instance.winOrDie = 2;
 
-        // 2초 후 씬 전환
+        // Load start scene after 2 seconds
         Invoke(nameof(LoadStartScene), 2f);
     }
 
     private IEnumerator FadeInDieSphere()
     {
-        // dieSphere는 반드시 MeshRenderer 또는 SpriteRenderer를 가지고 있어야 함
+        // dieSphere must have a MeshRenderer or SpriteRenderer
         Renderer renderer = dieSphere.GetComponent<Renderer>();
         Material mat = renderer.material;
 

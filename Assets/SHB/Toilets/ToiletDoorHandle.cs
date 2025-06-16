@@ -3,22 +3,24 @@ using System.Collections;
 
 public class ToiletDoorHandle : MonoBehaviour
 {
-    public ToiletDoorAllManager toiletDoorAllManager;
-    public GameObject toiletDoor;
-    public Sounds sound;
+    public ToiletDoorAllManager toiletDoorAllManager; // Manager that tracks door openings and triggers the doll
+    public GameObject toiletDoor; // The door object to be rotated
+    public Sounds sound; // Sound player for door interaction
 
-    private bool onlyOnce = false;
+    private bool onlyOnce = false; // Ensures the door is only opened once
 
+    // Called when the player grabs the toilet door handle
     public void grabHandle()
     {
         if (onlyOnce == false)
         {
             onlyOnce = true;
-            toiletDoorAllManager.whenThird();
-            StartCoroutine(RotateDoor());
+            toiletDoorAllManager.whenThird(); // Notify manager this door has been opened
+            StartCoroutine(RotateDoor()); // Start door opening animation
         }
     }
 
+    // Animates the door rotation and then destroys this handle object
     IEnumerator RotateDoor()
     {
         sound.PlayRandomSound();
@@ -26,24 +28,24 @@ public class ToiletDoorHandle : MonoBehaviour
         float elapsed = 0f;
 
         Quaternion startRotation = toiletDoor.transform.rotation;
-        Quaternion endRotation = startRotation * Quaternion.Euler(0f, -80f, 0f); // Y축 -80도 회전
+        Quaternion endRotation = startRotation * Quaternion.Euler(0f, -80f, 0f); // Rotate -80° around Y axis
 
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
             float t = elapsed / duration;
 
-            // EaseIn
+            // Ease-in curve
             float easedT = t * t;
 
             toiletDoor.transform.rotation = Quaternion.Slerp(startRotation, endRotation, easedT);
             yield return null;
         }
 
-        // 정확하게 최종 회전값으로 보정
+        // Snap to exact final rotation
         toiletDoor.transform.rotation = endRotation;
 
-        // 🎯 회전 끝난 후, 이 스크립트가 붙은 오브젝트 제거
+        // Remove this handle after door has fully opened
         Destroy(gameObject);
     }
 }

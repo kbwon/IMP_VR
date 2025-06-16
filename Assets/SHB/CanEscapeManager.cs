@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class CanEscapeManager : MonoBehaviour
 {
+    // Singleton instance
     public static CanEscapeManager Instance { get; private set; }
 
     private void Awake()
     {
-        // 중복 인스턴스 방지
+        // Prevent duplicate instances of this manager
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -14,20 +15,26 @@ public class CanEscapeManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject); // 씬 전환 시 유지하려면
+        DontDestroyOnLoad(gameObject); // Keep this object when switching scenes
     }
 
     public bool canEscape = false;
 
     void Update()
     {
+        // Do nothing if escaping is not currently allowed
         if (canEscape == false) return;
 
+        // If the player has moved into a room, disable chase behaviors and block further escape
         if (PlayerInfo.Instance.playerWhere != 0)
         {
             canEscape = false;
-            if (PlayerInfo.Instance.chasedByBookhead == true) GameManager.Instance.ToggleBookheadBehavior(false);
-            if (PlayerInfo.Instance.chasedByDoll == true) GameManager.Instance.ToggleDollBehavior(false);
+
+            if (PlayerInfo.Instance.chasedByBookhead == true)
+                GameManager.Instance.ToggleBookheadBehavior(false);
+
+            if (PlayerInfo.Instance.chasedByDoll == true)
+                GameManager.Instance.ToggleDollBehavior(false);
         }
     }
 }

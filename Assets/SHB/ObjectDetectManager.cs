@@ -25,11 +25,11 @@ public class ObjectDetectManager : MonoBehaviour
     [System.Serializable]
     public class ObjectReactionPair
     {
-        public GameObject targetObject;
+        public GameObject targetObject; // Object to monitor
 
-        public GameObject[] objectToActivate;
+        public GameObject[] objectToActivate; // Objects to activate after target disappears
 
-        public UnityEvent onDisappearAction; // ✅ 여기 추가
+        public UnityEvent onDisappearAction; // Optional function to call when target disappears
         [HideInInspector] public bool hasDisappeared = false;
     }
 
@@ -37,6 +37,7 @@ public class ObjectDetectManager : MonoBehaviour
 
     void Start()
     {
+        // Deactivate all linked objects at the beginning
         foreach (var pair in objectPairs)
         {
             if (pair.objectToActivate != null)
@@ -52,13 +53,14 @@ public class ObjectDetectManager : MonoBehaviour
 
     void Update()
     {
+        // Check for disappearance of target objects
         foreach (var pair in objectPairs)
         {
             if (pair.targetObject == null && !pair.hasDisappeared)
             {
                 pair.hasDisappeared = true;
 
-                // 기존 오브젝트 활성화
+                // Activate linked objects
                 if (pair.objectToActivate != null)
                 {
                     foreach (var obj in pair.objectToActivate)
@@ -68,12 +70,11 @@ public class ObjectDetectManager : MonoBehaviour
                     }
                 }
 
-                // ✅ 새로운: 함수 실행
+                // Invoke optional custom event
                 pair.onDisappearAction?.Invoke();
             }
         }
     }
-
 
     public void whenIGotKeyNumber5()
     {
@@ -85,7 +86,6 @@ public class ObjectDetectManager : MonoBehaviour
         sitDoll.SetActive(false);
 
         StartCoroutine(MoveZ(GameManager.Instance.dollMonsterObject.transform, 3.01f, 0.5f));
-
     }
 
     private IEnumerator MoveZ(Transform target, float deltaZ, float duration)
@@ -103,7 +103,7 @@ public class ObjectDetectManager : MonoBehaviour
             yield return null;
         }
 
-        target.position = endPos; // 마지막 보정
+        target.position = endPos; // Final position correction
         GameManager.Instance.dollMonsterObject.SetActive(false);
         GameManager.Instance.ToggleDollBehavior(true);
     }
@@ -118,17 +118,15 @@ public class ObjectDetectManager : MonoBehaviour
         {
             var extra = light.GetComponent<UnityEngine.Rendering.Universal.UniversalAdditionalLightData>();
             if (extra != null)
-                Destroy(extra); // URP 종속 컴포넌트 제거
+                Destroy(extra); // Remove URP-dependent component
 
-            Destroy(light); // Light 제거
+            Destroy(light); // Remove Light
         }
 
-        // Baked 라이트맵 제거
+        // Clear baked lighting
         LightmapSettings.lightmaps = new LightmapData[0];
         LightmapSettings.lightProbes = null;
 
         Debug.Log($"Removed {allLights.Length} lights and cleared baked lighting.");
-
     }
-
 }

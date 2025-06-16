@@ -2,15 +2,18 @@ using UnityEngine;
 
 public class DishOriginal : MonoBehaviour
 {
-    public GameObject brokenDish;
-    public float breakForce = 3.0f; // 얼마나 세게 부딪혀야 깨질지
-    public GameObject dishSound;
-    public AudioClip audioclip;
+    public GameObject brokenDish; // The broken version of the dish to activate
+    public float breakForce = 3.0f; // Required collision force to break the dish
+    public GameObject dishSound; // GameObject used to play the breaking sound
+    public AudioClip audioclip; // Sound clip to play when the dish breaks
 
+    // Hides the broken dish object at the start
     void Start()
     {
         brokenDish.SetActive(false);
     }
+
+    // Checks collision force and triggers dish break if threshold is exceeded
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.relativeVelocity.magnitude > breakForce)
@@ -18,6 +21,8 @@ public class DishOriginal : MonoBehaviour
             BreakDish();
         }
     }
+
+    // Replaces the current dish with the broken version and plays a sound
     void BreakDish()
     {
         brokenDish.transform.position = this.transform.position;

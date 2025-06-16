@@ -5,6 +5,8 @@ public class winCollider : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
+        // When the player touches the win collider,
+        // clean up all singleton managers and load the start scene
         if (other.gameObject.CompareTag("Player"))
         {
             Destroy(GameManager.Instance.gameObject);

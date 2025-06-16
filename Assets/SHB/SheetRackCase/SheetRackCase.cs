@@ -5,16 +5,17 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class SheetRackCase : MonoBehaviour
 {
-    public bool isOpen = false;
-    public TextMeshPro guideletter;
-    public XRGrabInteractable xrGrab;
-    public Sounds sound;
-    private bool isMoving = false;  // ⭐ 움직이는 중인지 확인
+    public bool isOpen = false; // Current open/closed state of the drawer
+    public TextMeshPro guideletter; // UI text for interaction instructions
+    public XRGrabInteractable xrGrab; // Reference to grab interaction component
+    public Sounds sound; // Sound manager for playing open/close sounds
+    private bool isMoving = false; // Whether the drawer is currently moving
 
-    private Vector3 closedPosition;
-    private Vector3 openPosition;
-    private Coroutine moveCoroutine;
+    private Vector3 closedPosition; // Local position when closed
+    private Vector3 openPosition; // Local position when open
+    private Coroutine moveCoroutine; // Reference to running movement coroutine
 
+    // Sets initial drawer position based on isOpen state
     void Start()
     {
         closedPosition = transform.localPosition;
@@ -23,6 +24,7 @@ public class SheetRackCase : MonoBehaviour
         if (isOpen == true) transform.localPosition += new Vector3(0f, 0f, -0.428f);
     }
 
+    // Called when the player presses the drawer handle
     public void pressSheetRack()
     {
         if (isMoving)
@@ -44,10 +46,12 @@ public class SheetRackCase : MonoBehaviour
         sound.PlayRandomSound();
     }
 
+    // Moves the drawer smoothly to the target position over time
     IEnumerator MoveToPosition(Vector3 target)
     {
-        isMoving = true;  // ✅ 시작할 때 잠금
+        isMoving = true;
         xrGrab.enabled = false;
+
         float duration = 0.8f;
         float elapsed = 0f;
         Vector3 start = transform.localPosition;
@@ -61,7 +65,7 @@ public class SheetRackCase : MonoBehaviour
         }
 
         transform.localPosition = target;
-        isMoving = false;  // ✅ 끝나면 다시 허용
+        isMoving = false;
         xrGrab.enabled = true;
     }
 }

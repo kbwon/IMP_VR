@@ -8,19 +8,22 @@ using UnityEngine.InputSystem;
 
 public class InOutDoor : MonoBehaviour
 {
+    public GameObject inDoor; // The door object used when the player is inside
+    public GameObject outDoor; // The door object used when the player is outside
+    public bool isIn = false; // Player starts outside
 
-    public GameObject inDoor;
-    public GameObject outDoor;
-    public bool isIn = false;  //시작할 땐 밖에 있음.
-
+    // (Only modify the item below)
     [Header("아래 항목들만 손댈 것")]
-    public int doorNumber = 0;
+    public int doorNumber = 0; // Unique number assigned to this door
 
+    // Initializes the door: show outside door and hide inside door
     void Start()
     {
         outDoor.SetActive(true);
         inDoor.SetActive(false);
     }
+
+    // Toggles between in/out door states and schedules delayed door activation
     public void doorUpdate()
     {
         if (isIn == true)
@@ -36,6 +39,7 @@ public class InOutDoor : MonoBehaviour
         }
     }
 
+    // Reactivates the appropriate door after a short delay
     private IEnumerator DelayedOutDoorUpdate(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -48,6 +52,5 @@ public class InOutDoor : MonoBehaviour
         {
             outDoor.SetActive(true);
         }
-        
     }
 }

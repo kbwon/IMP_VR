@@ -4,9 +4,11 @@ using UnityEngine.AI;
 
 public class FourthRoomManager : MonoBehaviour
 {
-    public Transform dollMoveTransform;
+    public Transform dollMoveTransform; // The position to move the doll to
     private bool playOnce = false;
-    public void playerGoOut()  // 플레이어가 인형이 활성화 되었을 때 방 밖으로 나가게 되면
+
+    // Called when the player exits the room while the doll is active
+    public void playerGoOut()
     {
         if (GameManager.Instance.dollActive == true)
         {
@@ -16,6 +18,7 @@ public class FourthRoomManager : MonoBehaviour
         }
     }
 
+    // Moves the doll monster to a new position with a delay
     public IEnumerator dollMove()
     {
         yield return new WaitForSeconds(2f);

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GetBreakingDish : MonoBehaviour
 {
+    // Called when a dish fragment is grabbed.
+    // If the player already has "DishFragment", destroy the object.
+    // Otherwise, add it to the player's inventory and destroy the object.
     public void getBreakingDish(GameObject piece)
     {
         foreach (String itemName in PlayerInfo.Instance.items)
@@ -16,7 +19,6 @@ public class GetBreakingDish : MonoBehaviour
         PlayerInfo.Instance.items.Add("DishFragment");
         PlayerInfo.Instance.printAll();
 
-        // 잡힌 조각 제거
-        Destroy(piece);
+        Destroy(piece); // Remove the grabbed dish piece
     }
 }
