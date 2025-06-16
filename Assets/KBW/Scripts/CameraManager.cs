@@ -7,125 +7,76 @@ using static UnityEditor.SceneView;
 
 public class CameraManager : MonoBehaviour
 {
-    // CameraManager.instance.~ 로 접근 가능
+    // Singleton instance, can be accessed via CameraManager.Instance
     public static CameraManager Instance;
 
-    // 아이템에 카메라 현재 상태 전달하는 변수
-    public bool isCameraMode = false; 
+    // Variable to indicate if camera mode is active, used by items
+    public bool isCameraMode = false;
 
-    // 아이템 개수 많지 않으면 이쪽에 아이템 등록
-    [SerializeField] 
+    // List of hidden objects to manage (works fine if not too many objects)
+    [SerializeField]
     private List<GameObject> hiddenObjects;
 
-    private float maxDistance = 1000f;
+    private float maxDistance = 1000f; // Maximum distance for detection (not currently used)
 
-    public LayerMask monsterLayer;
+    public LayerMask monsterLayer; // Layer mask for monster detection (not currently used)
 
-    private Volume cameraFilter;
+    private Volume cameraFilter; // Reference to post-processing volume for camera effect
 
     void Awake()
     {
-        if (Instance == null) Instance = this;
+        if (Instance == null) Instance = this; // Initialize singleton instance
     }
 
     void Start()
     {
-        cameraFilter = GetComponentInChildren<Volume>();
-    }
-
-    void Update()
-    {
-        // 여러 몬스터 확인해야 할 때
-        /*GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
-
-        foreach (GameObject monster in monsters)
-        {
-            Vector3 toMonster = monster.transform.position - Camera.main.transform.position;
-            float angle = Vector3.Angle(Camera.main.transform.forward, toMonster);
-
-            testStatue statue = monster.GetComponent<testStatue>();
-
-            if (angle < viewAngle)
-            {
-                // 시야각 안에 있을 경우 Raycast로 시야 확보 확인
-                Ray ray = new Ray(Camera.main.transform.position, toMonster.normalized);
-                if (Physics.Raycast(ray, out RaycastHit hit, maxDistance, monsterLayer))
-                {
-                    if (hit.collider.gameObject == monster)
-                    {
-                        Debug.DrawRay(ray.origin, ray.direction * maxDistance, Color.green);
-                        statue.isStared = true;
-                        continue;
-                    }
-                }
-            }
-
-            // 시야 밖이거나 Ray에 가려졌을 경우
-            statue.isStared = false;
-            Debug.DrawRay(Camera.main.transform.position, toMonster.normalized * maxDistance, Color.red);
-        }*/
+        cameraFilter = GetComponentInChildren<Volume>(); // Get post-processing volume component
     }
 
     public void EnterCameraMode()
     {
         isCameraMode = true;
         Debug.Log("isCameraMode: " + isCameraMode);
-        cameraFilter.enabled = true;
+        cameraFilter.enabled = true; // Enable post-processing effect
         foreach (var obj in hiddenObjects)
         {
-            SetMode(obj, true);
-            /*Transform[] children = obj.GetComponentsInChildren<Transform>();
-            foreach (Transform child in obj.transform)
-            {
-                if (child.CompareTag("NormalMode"))
-                    child.gameObject.SetActive(false);
-                else if (child.CompareTag("CameraMode"))
-                    child.gameObject.SetActive(true);
-            }*/
-        }            
+            SetMode(obj, true); // Show hidden objects in camera mode
+        }
     }
 
     public void ExitCameraMode()
     {
         isCameraMode = false;
         Debug.Log("isCameraMode: " + isCameraMode);
-        cameraFilter.enabled = false;
+        cameraFilter.enabled = false; // Disable post-processing effect
         foreach (var obj in hiddenObjects)
         {
-            SetMode(obj, false);
-            /*Transform[] children = obj.GetComponentsInChildren<Transform>();
-            foreach (Transform child in obj.transform)
-            {
-                if (child.CompareTag("NormalMode"))
-                    child.gameObject.SetActive(true);
-                else if (child.CompareTag("CameraMode"))
-                    child.gameObject.SetActive(false);
-            }*/
+            SetMode(obj, false); // Hide objects when exiting camera mode
         }
     }
 
     private void SetMode(GameObject obj, bool isCameraMode)
     {
-        Transform on = obj.transform.Find("On");
-        Transform off = obj.transform.Find("Off");
+        Transform on = obj.transform.Find("On"); // Child object named "On"
+        Transform off = obj.transform.Find("Off"); // Child object named "Off"
 
-        if (on != null) on.gameObject.SetActive(isCameraMode);
-        if (off != null) off.gameObject.SetActive(!isCameraMode);
+        if (on != null) on.gameObject.SetActive(isCameraMode); // Activate "On" if in camera mode
+        if (off != null) off.gameObject.SetActive(!isCameraMode); // Activate "Off" otherwise
     }
 
     public void RegisterHiddenObject(GameObject obj)
     {
         if (!hiddenObjects.Contains(obj))
-            hiddenObjects.Add(obj);
+            hiddenObjects.Add(obj); // Add object to hiddenObjects list if not already registered
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.collider == null) Debug.Log("콜라이더 감지 X");
+        if (hit.collider == null) Debug.Log("No collider detected");
 
         if (hit.collider.gameObject.CompareTag("Monster"))
         {
-            Debug.Log("플레이어 쪽 컨트롤러 콜리전 판정");
+            Debug.Log("Player controller collision detected with Monster");
         }
     }
 
@@ -133,7 +84,7 @@ public class CameraManager : MonoBehaviour
     {
         if (other.gameObject.tag == "Monster")
         {
-            Debug.Log("플레이어 쪽 트리거 판정");
+            Debug.Log("Player trigger collision detected with Monster");
         }
     }
 }
