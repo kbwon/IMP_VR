@@ -2,10 +2,10 @@
 
 public class GameManager : MonoBehaviour
 {
-    // 싱글톤 인스턴스
+    // Singleton instance
     public static GameManager Instance { get; private set; }
 
-    [Header("씬에 배치된 몬스터 오브젝트")]
+    [Header("Monster objects placed in the scene")]
     public GameObject dollMonsterObject;
     public GameObject bookheadMonsterObject;
     public bool dollActive = false;
@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        // 싱글톤 인스턴스 설정
+        // Set singleton instance
         if (Instance == null)
         {
             Instance = this;
@@ -31,26 +31,26 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // 몬스터 오브젝트를 비활성화 (게임 시작 시)
+        // Deactivate monster objects at the start of the game
         if (dollMonsterObject != null)
             dollMonsterObject.SetActive(false);
         if (bookheadMonsterObject != null)
             bookheadMonsterObject.SetActive(false);
 
-        // 컴포넌트 참조 저장
+        // Store component references
         if (dollMonsterObject != null)
             dollMonster = dollMonsterObject.GetComponent<MonsterAI>();
         if (bookheadMonsterObject != null)
             bookheadMonster = bookheadMonsterObject.GetComponent<MonsterAI>();
 
-        // 내부 로직도 비활성화 호출
+        // Also disable internal logic
         if (dollMonster != null)
             dollMonster.DisableChaseAndAttack();
         if (bookheadMonster != null)
             bookheadMonster.DisableChaseAndAttack();
     }
 
-    // ✅ 기존 메서드 이름 유지하면서 몬스터 오브젝트 활성/비활성 포함
+    // ✅ Keep original method names, also toggle object activation
     public void ToggleDollBehavior(bool on)
     {
         if (dollMonsterObject != null)

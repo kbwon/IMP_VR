@@ -11,7 +11,7 @@ public class ZombieAnimationController : MonoBehaviour
 
     void Update()
     {
-        // 예시: 스페이스바로 성공 실행, F 키로 실패 실행
+        // Example: Press Space to play success, F key to play failure
         if (Input.GetKeyDown(KeyCode.Space))
         {
             PlaySuccessReaction();
@@ -23,23 +23,23 @@ public class ZombieAnimationController : MonoBehaviour
         }
     }
 
-    // ✅ 성공 애니메이션 실행
+    // ✅ Play success animation
     public void PlaySuccessReaction()
     {
         ResetAllTriggers();
         animator.SetTrigger("SuccessTrigger");
-        Debug.Log("✅ 성공 애니메이션 실행");
+        Debug.Log("✅ Success animation triggered");
     }
 
-    // ❌ 실패 애니메이션 실행
+    // ❌ Play failure animation
     public void PlayFailReaction()
     {
         ResetAllTriggers();
         animator.SetTrigger("FailTrigger");
-        Debug.Log("❌ 실패 애니메이션 실행");
+        Debug.Log("❌ Failure animation triggered");
     }
 
-    // 🔄 트리거 초기화 (선택사항)
+    // 🔄 Reset triggers (optional)
     private void ResetAllTriggers()
     {
         animator.ResetTrigger("SuccessTrigger");

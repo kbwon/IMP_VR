@@ -10,25 +10,25 @@ public class MonsterAI : MonoBehaviour
         BookheadMonster
     }
 
-    [Header("몬스터 타입 설정")]
+    [Header("Monster Type Setting")]
     public MonsterType monsterType = MonsterType.BookheadMonster;
 
-    [Header("각 타입별 추적/공격 허용 여부")]
+    [Header("Enable chase/attack per type")]
     public bool dollCanChaseAndAttack = false;
     public bool bookheadCanChaseAndAttack = true;
 
-    [Header("공통 설정")]
+    [Header("Common Settings")]
     public Transform player;
-    public float chaseDistance = 8f;       // 추적 시작 거리
-    public float attackDistance = 2f;      // 공격 범위
-    public float wanderRadius = 10f;       // 순찰 반경
-    public float wanderTimer = 5f;         // 순찰 간격
-    public float attackDuration = 1.2f;    // 공격 애니메이션 지속 시간
+    public float chaseDistance = 8f;       // Start chasing when within this distance
+    public float attackDistance = 2f;      // Attack range
+    public float wanderRadius = 10f;       // Patrol radius
+    public float wanderTimer = 5f;         // Patrol interval
+    public float attackDuration = 1.2f;    // Duration of attack animation
 
-    [Header("사운드 설정")]
-    public AudioClip attackSound;              // 공격 시 재생할 사운드
-    public AudioClip periodicGrowlSound;       // 주기적으로 울리는 괴성
-    public float growlInterval = 5f;           // 괴성 간격 (초)
+    [Header("Sound Settings")]
+    public AudioClip attackSound;              // Sound to play when attacking
+    public AudioClip periodicGrowlSound;       // Growl sound played periodically
+    public float growlInterval = 5f;           // Growl interval in seconds
 
     private NavMeshAgent agent;
     private Animator animator;
@@ -48,17 +48,17 @@ public class MonsterAI : MonoBehaviour
 
     void Update()
     {
-        // 1) 현재 이 몬스터가 “추적/공격 허용 상태”인지 판별
+        // 1) Check whether this monster is allowed to chase/attack
         bool isEnabled = (monsterType == MonsterType.Doll)
                             ? dollCanChaseAndAttack
                             : bookheadCanChaseAndAttack;
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        // 2) 허용 상태이고, 거리 조건이 만족될 때만 공격/추적
+        // 2) Chase or attack only if enabled and within range
         if (isEnabled && distanceToPlayer <= attackDistance && !isAttacking)
         {
-            // 공격 상태
+            // Attack state
             agent.SetDestination(transform.position);
             animator.speed = 1f;
             SetAnimation(false, true);
@@ -66,14 +66,14 @@ public class MonsterAI : MonoBehaviour
         }
         else if (isEnabled && distanceToPlayer <= chaseDistance && !isAttacking)
         {
-            // 추적 상태
+            // Chase state
             agent.SetDestination(player.position);
             animator.speed = 3f;
             SetAnimation(true, false);
         }
         else
         {
-            // 순찰 상태
+            // Patrol state
             if (!isAttacking)
             {
                 timer += Time.deltaTime;
@@ -90,7 +90,7 @@ public class MonsterAI : MonoBehaviour
             }
         }
 
-        // 3) 주기적 Growl 사운드
+        // 3) Periodic growl sound
         growlTimer += Time.deltaTime;
         if (growlTimer >= growlInterval)
         {
@@ -111,7 +111,7 @@ public class MonsterAI : MonoBehaviour
     {
         isAttacking = true;
 
-        // 🔊 공격 사운드 재생
+        // 🔊 Play attack sound
         if (attackSound && audioSource)
             audioSource.PlayOneShot(attackSound);
 
@@ -132,7 +132,7 @@ public class MonsterAI : MonoBehaviour
     }
 
     /// <summary>
-    /// 이 몬스터가 속한 타입에 맞추어 chase/attack 허용(true) 또는 비허용(false)으로 설정한다.
+    /// Enables or disables chase/attack based on the monster's type.
     /// </summary>
     public void SetChaseAndAttackEnabled(bool enabled)
     {
@@ -143,7 +143,7 @@ public class MonsterAI : MonoBehaviour
     }
 
     /// <summary>
-    /// 현재 몬스터의 추적/공격을 활성화한다.
+    /// Enables chase/attack for this monster.
     /// </summary>
     public void EnableChaseAndAttack()
     {
@@ -151,7 +151,7 @@ public class MonsterAI : MonoBehaviour
     }
 
     /// <summary>
-    /// 현재 몬스터의 추적/공격을 비활성화한다.
+    /// Disables chase/attack for this monster.
     /// </summary>
     public void DisableChaseAndAttack()
     {
