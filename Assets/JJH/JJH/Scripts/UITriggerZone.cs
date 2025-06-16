@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class UITriggerZone : MonoBehaviour
 {
-    [Header("UI 오브젝트")]
-    public GameObject firstUI;   // 기본으로 뜨는 UI
-    public GameObject secondUI;  // 스페이스바 누르면 뜨는 추가 UI
+    [Header("UI Objects")]
+    public GameObject firstUI;   // Default UI that appears
+    public GameObject secondUI;  // Additional UI shown on Space key press
 
     private bool isPlayerInside = false;
 

@@ -2,14 +2,14 @@
 
 public class BookheadMover : MonoBehaviour
 {
-    [Header("움직일 오브젝트")]
-    public GameObject targetObject; // 이동시킬 대상
+    [Header("Object to Move")]
+    public GameObject targetObject; // Object to be moved
 
-    [Header("이동 경로")]
-    public Transform startPoint;  // 처음위치
-    public Transform endPoint;    // 나중위치
+    [Header("Movement Path")]
+    public Transform startPoint;  // Start position
+    public Transform endPoint;    // End position
 
-    public AudioClip bookHeadAppear; // 나타날 때 소리 추가
+    public AudioClip bookHeadAppear; // Sound to play when appearing
 
     public float moveSpeed = 2f;
 
@@ -19,7 +19,7 @@ public class BookheadMover : MonoBehaviour
 
     void Start()
     {
-        // 타겟이 지정되어 있으면 비활성화
+        // If target is assigned, deactivate it
         if (targetObject != null)
         {
             targetTransform = targetObject.transform;
@@ -27,7 +27,7 @@ public class BookheadMover : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("⚠️ targetObject가 비어 있습니다!");
+            Debug.LogWarning("⚠️ targetObject is not assigned!");
         }
 
         audioSource = GetComponent<AudioSource>();
@@ -35,7 +35,7 @@ public class BookheadMover : MonoBehaviour
 
     void Update()
     {
-        // ✅ 스페이스바 입력 감지
+        // ✅ Detect spacebar input
         if (Input.GetKeyDown(KeyCode.Space))
         {
             ActivateAndMove();
@@ -43,32 +43,32 @@ public class BookheadMover : MonoBehaviour
 
         if (isMoving && targetTransform != null && endPoint != null)
         {
-            // 이동 처리
+            // Handle movement
             targetTransform.position = Vector3.MoveTowards(targetTransform.position, endPoint.position, moveSpeed * Time.deltaTime);
 
-            // 도착하면 비활성화
+            // Once reached destination, deactivate
             if (Vector3.Distance(targetTransform.position, endPoint.position) < 0.01f)
             {
                 isMoving = false;
-                targetObject.SetActive(false); // 도착 후 꺼주기
+                targetObject.SetActive(false); // Deactivate after arrival
             }
         }
     }
 
-    // 외부에서 호출: 시작 위치로 설정하고 이동 시작
+    // Called externally: set position to start and begin movement
     public void ActivateAndMove()
     {
         if (targetObject != null && startPoint != null)
         {
             targetTransform.position = startPoint.position;
-            targetObject.SetActive(true); // 활성화
+            targetObject.SetActive(true); // Activate
             isMoving = true;
             audioSource.clip = bookHeadAppear;
             audioSource.Play();
         }
     }
 
-    // 외부에서 강제로 끄고 싶을 때
+    // Called externally to forcibly deactivate
     public void DeactivateImmediately()
     {
         if (targetObject != null)

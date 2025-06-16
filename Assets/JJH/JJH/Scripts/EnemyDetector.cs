@@ -8,11 +8,11 @@ public class EnemyDetector : MonoBehaviour
         Chasing
     }
 
-    [Header("시야 설정")]
+    [Header("Field of View Settings")]
     public float viewAngle = 90f;
     public float viewRange = 10f;
 
-    [Header("손전등 참조")]
+    [Header("Flashlight Reference")]
     public Transform playerTransform;
     public Transform playerFlashlightObject;
     private PlayerFlashlight flashlight;
@@ -26,39 +26,39 @@ public class EnemyDetector : MonoBehaviour
     {
         flashlight = playerFlashlightObject.GetComponent<PlayerFlashlight>();
         if (flashlight == null)
-            Debug.LogWarning("⚠️ PlayerFlashlight 스크립트 찾지 못함");
+            Debug.LogWarning("⚠️ Could not find PlayerFlashlight script");
     }
 
     private void Update()
     {
         if (flashlight == null || playerTransform == null) return;
 
-        bool seesPlayer = IsPlayerInFOV(); // 조건 1
-        bool seesFlashlight = flashlight.IsEnabled() && IsLightConeInFOV(); // 조건 2 (손전등이 켜져 있을 때만)
+        bool seesPlayer = IsPlayerInFOV(); // Condition 1
+        bool seesFlashlight = flashlight.IsEnabled() && IsLightConeInFOV(); // Condition 2 (only when flashlight is on)
 
         if (seesPlayer || seesFlashlight)
         {
             loseSightTimer = 0f;
-            // 추적 시작
+            // Start chasing
             if (currentState != EnemyState.Chasing)
             {
-                Debug.Log("🎯 적 A 추적 시작!");
+                Debug.Log("🎯 Enemy A starts chasing!");
                 currentState = EnemyState.Chasing;
                 GameManager.Instance.ToggleDollBehavior(true);
             }
 
-            loseSightTimer = 0f; // 추적 유지 중
+            loseSightTimer = 0f; // Maintain chase
         }
         else
         {
-            // 감지 안 될 경우 타이머 시작
+            // If not detected, start countdown
             if (currentState == EnemyState.Chasing)
             {
                 loseSightTimer += Time.deltaTime;
 
                 if (loseSightTimer >= loseSightDelay)
                 {
-                    Debug.Log("🛑 적 A 추적 중단");
+                    Debug.Log("🛑 Enemy A stops chasing");
                     GameManager.Instance.ToggleDollBehavior(false);
                     currentState = EnemyState.Idle;
                     loseSightTimer = 0f;

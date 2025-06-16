@@ -8,10 +8,10 @@ public class EnemyLightZoneDetector : MonoBehaviour
         Chasing
     }
 
-    [Header("감지 범위 설정")]
+    [Header("Detection Range Settings")]
     public float detectionRadius = 7f;
 
-    [Header("플레이어 참조")]
+    [Header("Player Reference")]
     public Transform playerTransform;
     public PlayerFlashlight flashlight;
 
@@ -31,7 +31,7 @@ public class EnemyLightZoneDetector : MonoBehaviour
             loseSightTimer = 0f;
             if (currentState != EnemyState.Chasing)
             {
-                Debug.Log("🔵 적 B: 추적 시작");
+                Debug.Log("🔵 Enemy B: Start chasing");
                 currentState = EnemyState.Chasing;
                 GameManager.Instance.ToggleBookheadBehavior(true);
             }
@@ -46,7 +46,7 @@ public class EnemyLightZoneDetector : MonoBehaviour
 
                 if (loseSightTimer >= loseSightDelay)
                 {
-                    Debug.Log("🛑 적 B: 추적 중단");
+                    Debug.Log("🛑 Enemy B: Stop chasing");
                     GameManager.Instance.ToggleBookheadBehavior(false);
                     currentState = EnemyState.Idle;
                     loseSightTimer = 0f;

@@ -13,8 +13,8 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("✅ 마우스 클릭 - 공격 트리거 발생");
-            animator.SetTrigger("attackTrigger"); // Trigger 발동
+            Debug.Log("✅ Mouse click - attack trigger activated");
+            animator.SetTrigger("attackTrigger"); // Trigger activation
         }
     }
 }

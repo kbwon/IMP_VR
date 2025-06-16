@@ -5,11 +5,12 @@ public class PlayerFlashlight : MonoBehaviour
     public enum FlashlightState { Off, On }
     public FlashlightState currentState = FlashlightState.On;
     private Light spotlight;
+
     void Start()
     {
         spotlight = GetComponent<Light>();
         if (spotlight == null)
-            Debug.LogWarning("Spotlight 컴포넌트를 찾을 수 없습니다.");
+            Debug.LogWarning("Could not find Spotlight component.");
     }
 
     void Update()
@@ -33,16 +34,17 @@ public class PlayerFlashlight : MonoBehaviour
             spotlight.enabled = false;
         }
 
-        Debug.Log($"🔦 손전등 상태: {currentState}");
+        Debug.Log($"🔦 Flashlight state: {currentState}");
     }
 
     public bool IsEnabled()
     {
         return currentState == FlashlightState.On;
     }
+
     public float spotAngle = 20f;
     public float range = 15f;
-    public Color coneColor = Color.yellow; // 디버그 색상
+    public Color coneColor = Color.yellow; // Debug cone color
 
     public Vector3 GetConeOrigin() => transform.position;
     public Vector3 GetConeDirection() => transform.forward.normalized;
@@ -60,18 +62,18 @@ public class PlayerFlashlight : MonoBehaviour
         Vector3 rightDir = Quaternion.Euler(0, halfAngle, 0) * forward;
         Vector3 leftDir = Quaternion.Euler(0, -halfAngle, 0) * forward;
 
-        // 빛 퍼지는 방향 라인
+        // Light cone lines
         Gizmos.DrawLine(origin, origin + rightDir * range);
         Gizmos.DrawLine(origin, origin + leftDir * range);
 
-        // 가운데 직선
+        // Center line
         Gizmos.DrawLine(origin, origin + forward * range);
 
-        // 원형 외곽 그리기
+        // Draw circular arc
         DrawConeArc(origin, forward, halfAngle, range, 20);
     }
 
-    // 원호(Arc)를 그려주는 함수
+    // Function to draw arc of the cone
     void DrawConeArc(Vector3 origin, Vector3 forward, float halfAngle, float radius, int segments)
     {
         float angleStep = (halfAngle * 2) / segments;

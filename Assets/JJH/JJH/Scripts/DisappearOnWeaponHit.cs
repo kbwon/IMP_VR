@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class DisappearOnWeaponHit : MonoBehaviour
 {
-    [Header("맞으면 3초 후 사라질 오브젝트")]
+    [Header("Object that disappears 3 seconds after being hit")]
     public GameObject targetObject;
 
-    [Header("맞는 태그")]
+    [Header("Tag that triggers the effect")]
     public string weaponTag = "Weapon";
 
     private void OnTriggerEnter(Collider other)
