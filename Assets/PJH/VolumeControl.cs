@@ -12,25 +12,25 @@ public class VolumeControl : MonoBehaviour
 
     private void Awake()
     {
-        // 싱글톤 인스턴스 설정
+        // Set up singleton instance
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // 필요 시 유지
+            DontDestroyOnLoad(gameObject); // Keep this object across scenes if needed
         }
         else
         {
-            Destroy(gameObject); // 중복 제거
+            Destroy(gameObject); // Remove duplicate instances
         }
     }
 
     void Start()
     {
-        // 슬라이더 이벤트 연결
+        // Connect slider event
         if (volumeSlider != null)
         {
             volumeSlider.onValueChanged.AddListener(SetVolume);
-            SetVolume(volumeSlider.value); // 초기값 반영
+            SetVolume(volumeSlider.value); // Apply initial slider value
         }
         else
         {
@@ -42,7 +42,7 @@ public class VolumeControl : MonoBehaviour
     }
 
 
-    // 다른 스크립트에서도 호출 가능
+    // Can be called from other scripts
     public void SetVolume(float value)
     {
         dB = Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * 20f;
